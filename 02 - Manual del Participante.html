@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02 - Manual del Participante</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="📘-manual-del-participante">📘 MANUAL DEL PARTICIPANTE</h1>
+<h2 id="taller-dashboards-shiny-express---kpis-de-manufactura">Taller: Dashboards Shiny Express - KPIs de Manufactura</h2>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="100"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="120"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="90"> </div>
+<p><strong>Instituto Tecnológico Superior de Purísima del Rincón</strong><br>
+<strong>Semana Tecnológica 2025</strong><br>
+<strong>15 de octubre de 2025</strong></p>
+<hr>
+<h2 id="📋-índice">📋 ÍNDICE</h2>
+<ol>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#preparaci%C3%B3n-pre-taller">Preparación Pre-Taller</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#m%C3%B3dulo-1-configuraci%C3%B3n">Módulo 1: Introducción y Configuración (08:00-08:30)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#m%C3%B3dulo-2-fundamentos">Módulo 2: Fundamentos de Shiny (08:30-10:00)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#receso">RECESO (10:00-11:00)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#m%C3%B3dulo-3-kpis">Módulo 3: KPIs de Manufactura (11:00-11:45)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#m%C3%B3dulo-4-dashboard">Módulo 4: Dashboard Completo (11:45-12:50)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#m%C3%B3dulo-5-publicaci%C3%B3n">Módulo 5: Publicación y Cierre (12:50-13:00)</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#recursos-y-referencias">Recursos y Referencias</a></li>
+<li><a href="https://claude.ai/chat/57aa6acb-ea6f-4bca-9723-41c8844bcd1c?artifactId=manual_participante_logos#soluci%C3%B3n-de-problemas">Solución de Problemas</a></li>
+</ol>
+<hr>
+<h1 id="preparación-pre-taller">PREPARACIÓN PRE-TALLER</h1>
+<h2 id="✅-requisitos-previos">✅ Requisitos Previos</h2>
+<h3 id="hardware">Hardware:</h3>
+<ul>
+<li>💻 Laptop con navegador web actualizado (Chrome, Firefox, Edge)</li>
+<li>🌐 Conexión estable a internet</li>
+<li>🖱️ Mouse (recomendado para mayor comodidad)</li>
+</ul>
+<h3 id="cuentas-necesarias">Cuentas Necesarias:</h3>
+<ul>
+<li>📧 Cuenta de correo electrónico (Gmail, Outlook, etc.)</li>
+<li>☁️ Cuenta en Posit.Cloud (para desarrollo)</li>
+<li>🚀 Cuenta en <a href="http://shinyapps.io">shinyapps.io</a> (para publicación)</li>
+</ul>
+<h3 id="conocimientos">Conocimientos:</h3>
+<ul>
+<li>📊 Básicos de R (deseable, no obligatorio)</li>
+<li>🏭 Familiaridad con conceptos de manufactura (ayuda)</li>
+<li>💡 Interés en visualización de datos</li>
+</ul>
+<hr>
+<h2 id="🚀-crear-cuenta-en-posit.cloud">🚀 CREAR CUENTA EN POSIT.CLOUD</h2>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="60"> </div>
+<h3 id="paso-1-acceder-al-sitio">Paso 1: Acceder al Sitio</h3>
+<ol>
+<li>Abrir navegador</li>
+<li>Ir a: <strong><a href="https://posit.cloud/">https://posit.cloud/</a></strong></li>
+<li>Clic en <strong>“Sign Up”</strong> (Registrarse)</li>
+</ol>
+<h3 id="paso-2-registrarse">Paso 2: Registrarse</h3>
+<p><strong>Opción A - Con Google:</strong></p>
+<ol>
+<li>Clic en “Sign up with Google”</li>
+<li>Seleccionar tu cuenta de Gmail</li>
+<li>Autorizar el acceso</li>
+</ol>
+<p><strong>Opción B - Con Email:</strong></p>
+<ol>
+<li>Clic en “Sign up with email”</li>
+<li>Ingresar:
+<ul>
+<li>Nombre completo</li>
+<li>Email</li>
+<li>Contraseña (mínimo 8 caracteres)</li>
+</ul>
+</li>
+<li>Verificar email</li>
+</ol>
+<h3 id="paso-3-configuración-inicial">Paso 3: Configuración Inicial</h3>
+<ol>
+<li>Seleccionar plan <strong>“Free”</strong> (gratuito)</li>
+<li>Completar perfil (opcional)</li>
+<li>Hacer tour rápido de la interfaz</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Tip:</strong> El plan gratuito incluye 25 horas de cómputo al mes, suficiente para el taller y práctica personal.</p>
+</blockquote>
+<hr>
+<h2 id="📁-estructura-de-archivos-del-taller">📁 ESTRUCTURA DE ARCHIVOS DEL TALLER</h2>
+<pre><code>mi-taller-shiny/
+│
+├── ejercicio_1_basico.R
+├── ejercicio_2_calidad.R
+├── ejercicio_3_oee.R
+├── ejercicio_4_dashboard_completo.R
+│
+├── datos/
+│   ├── linea_produccion_a.csv
+│   ├── registro_mantenimiento.csv
+│   └── control_calidad.csv
+│
+├── referencias/
+│   └── guia_rapida_shiny.md
+│
+└── README.md
+
+</code></pre>
+<hr>
+<h1 id="módulo-1-configuración">MÓDULO 1: CONFIGURACIÓN</h1>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="60"> </div>
+<h2 id="⏰-horario-0800-0830-30-minutos">⏰ Horario: 08:00-08:30 (30 minutos)</h2>
+<h2 id="🔧-configurar-proyecto-en-posit.cloud">🔧 Configurar Proyecto en Posit.Cloud</h2>
+<h3 id="paso-1-crear-nuevo-proyecto">Paso 1: Crear Nuevo Proyecto</h3>
+<ol>
+<li>En Posit.Cloud, clic en <strong>"New Project"</strong></li>
+<li>Seleccionar <strong>"New RStudio Project"</strong></li>
+<li>Esperar a que cargue el ambiente (30-60 seg)</li>
+</ol>
+<h3 id="paso-2-nombrar-el-proyecto">Paso 2: Nombrar el Proyecto</h3>
+<ol>
+<li>Clic en el nombre del proyecto (arriba)</li>
+<li>Escribir: <strong>"Taller-Shiny-ITSPR-2025"</strong></li>
+<li>Enter para guardar</li>
+</ol>
+<h3 id="paso-3-instalar-paquetes-necesarios">Paso 3: Instalar Paquetes Necesarios</h3>
+<p>En la <strong>Consola</strong> de R (abajo), copiar y ejecutar:</p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Instalar paquetes principales</span>
+install.packages<span class="token punctuation">(</span>c<span class="token punctuation">(</span>
+  <span class="token string">"shiny"</span><span class="token punctuation">,</span>           <span class="token comment"># Framework principal</span>
+  <span class="token string">"bslib"</span><span class="token punctuation">,</span>           <span class="token comment"># Temas y estilos</span>
+  <span class="token string">"dplyr"</span><span class="token punctuation">,</span>           <span class="token comment"># Manipulación de datos</span>
+  <span class="token string">"ggplot2"</span><span class="token punctuation">,</span>         <span class="token comment"># Gráficos estáticos</span>
+  <span class="token string">"plotly"</span><span class="token punctuation">,</span>          <span class="token comment"># Gráficos interactivos</span>
+  <span class="token string">"DT"</span><span class="token punctuation">,</span>              <span class="token comment"># Tablas interactivas</span>
+  <span class="token string">"lubridate"</span><span class="token punctuation">,</span>       <span class="token comment"># Fechas</span>
+  <span class="token string">"scales"</span>           <span class="token comment"># Formateo</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre>
+<blockquote>
+<p>⏱️ <strong>Tiempo estimado:</strong> 2-3 minutos</p>
+</blockquote>
+<h3 id="paso-4-verificar-instalación">Paso 4: Verificar Instalación</h3>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Verificar que se carguen sin errores</span>
+library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>bslib<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>ggplot2<span class="token punctuation">)</span>
+
+<span class="token comment"># Si no hay errores, ¡estás listo!</span>
+print<span class="token punctuation">(</span><span class="token string">"✅ Configuración exitosa"</span><span class="token punctuation">)</span>
+
+</code></pre>
+<hr>
+<h1 id="módulo-2-fundamentos">MÓDULO 2: FUNDAMENTOS</h1>
+<div align="center"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="70"> </div>
+<h2 id="⏰-horario-0830-1000-90-minutos">⏰ Horario: 08:30-10:00 (90 minutos)</h2>
+<h2 id="📝-ejercicio-1-primera-app-interactiva">📝 EJERCICIO 1: Primera App Interactiva</h2>
+<h3 id="objetivo">Objetivo:</h3>
+<p>Crear una aplicación básica que muestre producción y calcule % de meta.</p>
+<h3 id="paso-a-paso">Paso a Paso:</h3>
+<h4 id="crear-nuevo-archivo">1. Crear Nuevo Archivo</h4>
+<ul>
+<li>Menú: <strong>File → New File → R Script</strong></li>
+<li>Guardar como: <strong>"ejercicio_1_basico.R"</strong></li>
+</ul>
+<h4 id="copiar-el-código-base">2. Copiar el Código Base</h4>
+<pre class=" language-r"><code class="prism  language-r">library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>bslib<span class="token punctuation">)</span>
+
+ui <span class="token operator">&lt;-</span> page_sidebar<span class="token punctuation">(</span>
+  title <span class="token operator">=</span> <span class="token string">"Mi Primera App Industrial"</span><span class="token punctuation">,</span>
+  
+  sidebar <span class="token operator">=</span> sidebar<span class="token punctuation">(</span>
+    h4<span class="token punctuation">(</span><span class="token string">"Control de Producción"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    sliderInput<span class="token punctuation">(</span><span class="token string">"produccion"</span><span class="token punctuation">,</span> 
+                <span class="token string">"Unidades Producidas:"</span><span class="token punctuation">,</span> 
+                min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    sliderInput<span class="token punctuation">(</span><span class="token string">"meta"</span><span class="token punctuation">,</span> 
+                <span class="token string">"Meta de Producción:"</span><span class="token punctuation">,</span> 
+                min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token number">800</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  
+  layout_columns<span class="token punctuation">(</span>
+    value_box<span class="token punctuation">(</span>
+      title <span class="token operator">=</span> <span class="token string">"Producción Actual"</span><span class="token punctuation">,</span>
+      value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"produccion_texto"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      showcase <span class="token operator">=</span> bs_icon<span class="token punctuation">(</span><span class="token string">"gear-fill"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    value_box<span class="token punctuation">(</span>
+      title <span class="token operator">=</span> <span class="token string">"% de Meta"</span><span class="token punctuation">,</span>
+      value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"porcentaje"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+server <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">,</span> session<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  output<span class="token operator">$</span>produccion_texto <span class="token operator">&lt;-</span> renderText<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    paste<span class="token punctuation">(</span>input<span class="token operator">$</span>produccion<span class="token punctuation">,</span> <span class="token string">"unidades"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  output<span class="token operator">$</span>porcentaje <span class="token operator">&lt;-</span> renderText<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    pct <span class="token operator">&lt;-</span> round<span class="token punctuation">(</span><span class="token punctuation">(</span>input<span class="token operator">$</span>produccion <span class="token operator">/</span> input<span class="token operator">$</span>meta<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    paste0<span class="token punctuation">(</span>pct<span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+shinyApp<span class="token punctuation">(</span>ui<span class="token punctuation">,</span> server<span class="token punctuation">)</span>
+
+</code></pre>
+<h4 id="ejecutar-la-app">3. Ejecutar la App</h4>
+<ul>
+<li>Clic en <strong>“Run App”</strong> (arriba a la derecha)</li>
+<li>Se abrirá una ventana con tu aplicación</li>
+<li>Mover los sliders para ver cambios en tiempo real</li>
+</ul>
+<h4 id="experimentar">4. Experimentar</h4>
+<ul>
+<li>Cambiar los valores min/max de los sliders</li>
+<li>Modificar los títulos de las value boxes</li>
+<li>Agregar colores a las cajas</li>
+</ul>
+<hr>
+<h2 id="🎨-ejercicio-2-dashboard-de-calidad">🎨 EJERCICIO 2: Dashboard de Calidad</h2>
+<h3 id="objetivo-1">Objetivo:</h3>
+<p>Crear un dashboard para inspección de calidad con cálculo de First Pass Yield.</p>
+<h3 id="conceptos-nuevos">Conceptos Nuevos:</h3>
+<ul>
+<li><strong>Inputs numéricos</strong> (<code>numericInput</code>)</li>
+<li><strong>Selectores</strong> (<code>selectInput</code>)</li>
+<li><strong>Gráficos</strong> (<code>plotOutput</code>)</li>
+<li><strong>Condicionales</strong> (if/else en render)</li>
+</ul>
+<h3 id="código-completo">Código Completo:</h3>
+<pre class=" language-r"><code class="prism  language-r">library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>bslib<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>ggplot2<span class="token punctuation">)</span>
+
+ui <span class="token operator">&lt;-</span> page_sidebar<span class="token punctuation">(</span>
+  title <span class="token operator">=</span> <span class="token string">"Control de Calidad"</span><span class="token punctuation">,</span>
+  
+  sidebar <span class="token operator">=</span> sidebar<span class="token punctuation">(</span>
+    h4<span class="token punctuation">(</span><span class="token string">"Parámetros"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    numericInput<span class="token punctuation">(</span><span class="token string">"inspeccionadas"</span><span class="token punctuation">,</span> 
+                 <span class="token string">"Piezas Inspeccionadas:"</span><span class="token punctuation">,</span> 
+                 <span class="token number">100</span><span class="token punctuation">,</span> min <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    numericInput<span class="token punctuation">(</span><span class="token string">"defectuosas"</span><span class="token punctuation">,</span> 
+                 <span class="token string">"Piezas Defectuosas:"</span><span class="token punctuation">,</span> 
+                 <span class="token number">5</span><span class="token punctuation">,</span> min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    selectInput<span class="token punctuation">(</span><span class="token string">"turno"</span><span class="token punctuation">,</span> <span class="token string">"Turno:"</span><span class="token punctuation">,</span>
+                choices <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Matutino"</span><span class="token punctuation">,</span> <span class="token string">"Vespertino"</span><span class="token punctuation">,</span> <span class="token string">"Nocturno"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  
+  value_box<span class="token punctuation">(</span>
+    title <span class="token operator">=</span> <span class="token string">"First Pass Yield"</span><span class="token punctuation">,</span>
+    value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"fpy"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  
+  card<span class="token punctuation">(</span>
+    plotOutput<span class="token punctuation">(</span><span class="token string">"grafico_calidad"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+server <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  
+  fpy_valor <span class="token operator">&lt;-</span> reactive<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    buenas <span class="token operator">&lt;-</span> input<span class="token operator">$</span>inspeccionadas <span class="token operator">-</span> input<span class="token operator">$</span>defectuosas
+    <span class="token punctuation">(</span>buenas <span class="token operator">/</span> input<span class="token operator">$</span>inspeccionadas<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  output<span class="token operator">$</span>fpy <span class="token operator">&lt;-</span> renderText<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    paste0<span class="token punctuation">(</span>round<span class="token punctuation">(</span>fpy_valor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  output<span class="token operator">$</span>grafico_calidad <span class="token operator">&lt;-</span> renderPlot<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    df <span class="token operator">&lt;-</span> data.frame<span class="token punctuation">(</span>
+      tipo <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Buenas"</span><span class="token punctuation">,</span> <span class="token string">"Defectuosas"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      cantidad <span class="token operator">=</span> c<span class="token punctuation">(</span>input<span class="token operator">$</span>inspeccionadas <span class="token operator">-</span> input<span class="token operator">$</span>defectuosas<span class="token punctuation">,</span> 
+                   input<span class="token operator">$</span>defectuosas<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    
+    ggplot<span class="token punctuation">(</span>df<span class="token punctuation">,</span> aes<span class="token punctuation">(</span>x <span class="token operator">=</span> tipo<span class="token punctuation">,</span> y <span class="token operator">=</span> cantidad<span class="token punctuation">,</span> fill <span class="token operator">=</span> tipo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+      geom_bar<span class="token punctuation">(</span>stat <span class="token operator">=</span> <span class="token string">"identity"</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+      scale_fill_manual<span class="token punctuation">(</span>values <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Buenas"</span> <span class="token operator">=</span> <span class="token string">"#28a745"</span><span class="token punctuation">,</span> 
+                                   <span class="token string">"Defectuosas"</span> <span class="token operator">=</span> <span class="token string">"#dc3545"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+      theme_minimal<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+      labs<span class="token punctuation">(</span>title <span class="token operator">=</span> paste<span class="token punctuation">(</span><span class="token string">"Turno:"</span><span class="token punctuation">,</span> input<span class="token operator">$</span>turno<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+shinyApp<span class="token punctuation">(</span>ui<span class="token punctuation">,</span> server<span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="📍-ejercicio-práctico">📍 Ejercicio Práctico:</h3>
+<ol>
+<li>Ejecutar la app</li>
+<li>Probar con diferentes valores</li>
+<li><strong>Reto:</strong> Agregar una alerta cuando FPY &lt; 95%</li>
+</ol>
+<hr>
+<h1 id="☕-receso">☕ RECESO</h1>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="60"> </div>
+<h2 id="⏰-horario-1000-1100-60-minutos">⏰ Horario: 10:00-11:00 (60 minutos)</h2>
+<h3 id="descanso-e-intermedio-de-alumnos">Descanso e Intermedio de Alumnos</h3>
+<p><strong>Aprovecha este tiempo para:</strong></p>
+<ul>
+<li>☕ Tomar un café o refrigerio</li>
+<li>💬 Conversar con otros participantes</li>
+<li>📱 Revisar tus redes sociales</li>
+<li>🔄 Repasar lo visto en la primera parte</li>
+<li>💻 Experimentar con los ejercicios</li>
+<li>❓ Preparar dudas para la segunda parte</li>
+</ul>
+<p><strong>Tips para la segunda parte:</strong></p>
+<ul>
+<li>🔋 Asegúrate de que tu laptop esté cargada</li>
+<li>🌐 Verifica tu conexión a internet</li>
+<li>📁 Ten listos tus archivos del proyecto</li>
+<li>💾 Guarda tu progreso antes del receso</li>
+</ul>
+<hr>
+<h1 id="módulo-3-kpis">MÓDULO 3: KPIS</h1>
+<h2 id="⏰-horario-1100-1145-45-minutos">⏰ Horario: 11:00-11:45 (45 minutos)</h2>
+<h2 id="📊-ejercicio-3-calculadora-oee">📊 EJERCICIO 3: Calculadora OEE</h2>
+<h3 id="objetivo-2">Objetivo:</h3>
+<p>Implementar el cálculo completo de OEE con sus 3 componentes.</p>
+<h3 id="fórmulas-a-implementar">Fórmulas a Implementar:</h3>
+<pre><code>Disponibilidad = (Tiempo Planeado - Downtime) / Tiempo Planeado
+
+Rendimiento = (Unidades × Ciclo Ideal) / Tiempo Operativo
+
+Calidad = Unidades Buenas / Unidades Producidas
+
+OEE = Disponibilidad × Rendimiento × Calidad
+
+</code></pre>
+<h3 id="interfaz-de-la-app">Interfaz de la App:</h3>
+<p><strong>Inputs (Sidebar):</strong></p>
+<ul>
+<li>⏰ Tiempo Planeado (min)</li>
+<li>🛑 Tiempo de Paro (min)</li>
+<li>📦 Unidades Producidas</li>
+<li>⏱️ Tiempo de Ciclo Ideal (min)</li>
+<li>✅ Unidades Buenas</li>
+</ul>
+<p><strong>Outputs (Main):</strong></p>
+<ul>
+<li>📈 OEE Total (%) + Clasificación</li>
+<li>📊 Disponibilidad (%)</li>
+<li>📊 Rendimiento (%)</li>
+<li>📊 Calidad (%)</li>
+<li>📉 Gráfico de componentes</li>
+<li>📍 Análisis detallado</li>
+</ul>
+<h3 id="interpretación-de-resultados">Interpretación de Resultados:</h3>
+<p>OEE</p>
+<p>Clasificación</p>
+<p>Color</p>
+<p>Acción</p>
+<p>≥ 85%</p>
+<p>World Class</p>
+<p>🟢 Verde</p>
+<p>Mantener</p>
+<p>65-84%</p>
+<p>Bueno</p>
+<p>🟡 Amarillo</p>
+<p>Mejorar</p>
+<p>40-64%</p>
+<p>Regular</p>
+<p>🟠 Naranja</p>
+<p>Investigar</p>
+<p>&lt; 40%</p>
+<p>Deficiente</p>
+<p>🔴 Rojo</p>
+<p>Acción urgente</p>
+<h3 id="📍-caso-de-estudio">📍 Caso de Estudio:</h3>
+<p><strong>Datos de Ejemplo:</strong></p>
+<pre><code>Tiempo Planeado: 480 min (8 horas)
+Downtime: 45 min
+Unidades Producidas: 450
+Ciclo Ideal: 1 min/unidad
+Unidades Buenas: 430
+
+</code></pre>
+<p><strong>Cálculos:</strong></p>
+<pre><code>Disponibilidad = (480 - 45) / 480 = 90.6%
+Rendimiento = (450 × 1) / 435 = 103.4% → 100% (máx)
+Calidad = 430 / 450 = 95.6%
+
+OEE = 90.6% × 100% × 95.6% = 86.6% ✅ World Class!
+
+</code></pre>
+<hr>
+<h1 id="módulo-4-dashboard-completo">MÓDULO 4: DASHBOARD COMPLETO</h1>
+<h2 id="⏰-horario-1145-1250-65-minutos">⏰ Horario: 11:45-12:50 (65 minutos)</h2>
+<h2 id="🎯-ejercicio-4-dashboard-integrador">🎯 EJERCICIO 4: Dashboard Integrador</h2>
+<h3 id="objetivo-final">Objetivo Final:</h3>
+<p>Crear un dashboard profesional con múltiples KPIs, gráficos y análisis.</p>
+<h3 id="características-principales">Características Principales:</h3>
+<h4 id="panel-de-kpis">1. <strong>Panel de KPIs</strong></h4>
+<pre class=" language-r"><code class="prism  language-r">layout_columns<span class="token punctuation">(</span>
+  value_box<span class="token punctuation">(</span>title <span class="token operator">=</span> <span class="token string">"OEE"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"kpi_oee"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  value_box<span class="token punctuation">(</span>title <span class="token operator">=</span> <span class="token string">"MTBF"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"kpi_mtbf"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  value_box<span class="token punctuation">(</span>title <span class="token operator">=</span> <span class="token string">"FPY"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"kpi_fpy"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  value_box<span class="token punctuation">(</span>title <span class="token operator">=</span> <span class="token string">"Producción"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"kpi_prod"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+</code></pre>
+<h4 id="gráfico-de-tendencia">2. <strong>Gráfico de Tendencia</strong></h4>
+<ul>
+<li>Línea de tiempo con OEE por hora</li>
+<li>Línea de referencia en 85% (World Class)</li>
+<li>Tooltip interactivo con detalles</li>
+</ul>
+<h4 id="diagrama-de-pareto">3. <strong>Diagrama de Pareto</strong></h4>
+<ul>
+<li>Causas de downtime ordenadas</li>
+<li>Barras + línea acumulativa</li>
+<li>Identificar el 80/20</li>
+</ul>
+<h4 id="tabla-de-incidencias">4. <strong>Tabla de Incidencias</strong></h4>
+<ul>
+<li>Filtrable y ordenable</li>
+<li>Colores condicionales</li>
+<li>Exportable</li>
+</ul>
+<h3 id="estructura-de-pestañas">Estructura de Pestañas:</h3>
+<pre><code>📊 Panel Principal
+   ├── KPIs principales
+   ├── Gráfico de tendencia
+   ├── Pareto de downtime
+   └── Componentes OEE
+
+📋 Incidencias
+   └── Tabla detallada
+
+📈 Análisis
+   ├── Resumen estadístico
+   └── Alertas y recomendaciones
+
+</code></pre>
+<h3 id="filtros-disponibles">Filtros Disponibles:</h3>
+<pre class=" language-r"><code class="prism  language-r">sidebar<span class="token punctuation">(</span>
+  dateInput<span class="token punctuation">(</span><span class="token string">"fecha"</span><span class="token punctuation">,</span> <span class="token string">"Fecha:"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> Sys.Date<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  selectInput<span class="token punctuation">(</span><span class="token string">"turno"</span><span class="token punctuation">,</span> <span class="token string">"Turno:"</span><span class="token punctuation">,</span> 
+              choices <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Todos"</span><span class="token punctuation">,</span> <span class="token string">"Matutino"</span><span class="token punctuation">,</span> <span class="token string">"Vespertino"</span><span class="token punctuation">,</span> <span class="token string">"Nocturno"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  selectInput<span class="token punctuation">(</span><span class="token string">"linea"</span><span class="token punctuation">,</span> <span class="token string">"Línea:"</span><span class="token punctuation">,</span> 
+              choices <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Línea A"</span><span class="token punctuation">,</span> <span class="token string">"Línea B"</span><span class="token punctuation">,</span> <span class="token string">"Línea C"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  checkboxInput<span class="token punctuation">(</span><span class="token string">"auto_refresh"</span><span class="token punctuation">,</span> <span class="token string">"Actualización automática"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  actionButton<span class="token punctuation">(</span><span class="token string">"refresh"</span><span class="token punctuation">,</span> <span class="token string">"🔄 Actualizar"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="sistema-de-alertas">Sistema de Alertas:</h3>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Lógica de alertas</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>oee <span class="token operator">&lt;</span> <span class="token number">65</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alerta <span class="token operator">&lt;-</span> <span class="token string">"⚠️ OEE BAJO: Requiere atención inmediata"</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>fpy <span class="token operator">&lt;</span> <span class="token number">95</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alerta <span class="token operator">&lt;-</span> <span class="token string">"⚠️ CALIDAD: FPY por debajo de meta"</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>oee <span class="token operator">&gt;=</span> <span class="token number">85</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alerta <span class="token operator">&lt;-</span> <span class="token string">"✅ EXCELENTE: OEE World Class alcanzado"</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<hr>
+<h1 id="módulo-5-publicación-y-cierre">MÓDULO 5: PUBLICACIÓN Y CIERRE</h1>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="70"> </div>
+<h2 id="⏰-horario-1250-1300-10-minutos">⏰ Horario: 12:50-13:00 (10 minutos)</h2>
+<h2 id="🚀-publicar-en-shinyapps.io">🚀 Publicar en <a href="http://shinyapps.io">shinyapps.io</a></h2>
+<h3 id="paso-1-crear-cuenta-en-shinyapps.io">Paso 1: Crear Cuenta en <a href="http://shinyapps.io">shinyapps.io</a></h3>
+<p><strong>Acceder al servicio:</strong></p>
+<ol>
+<li>Abrir navegador</li>
+<li>Ir a: <strong><a href="https://www.shinyapps.io/">https://www.shinyapps.io/</a></strong></li>
+<li>Clic en <strong>“Sign Up”</strong> (esquina superior derecha)</li>
+</ol>
+<p><strong>Registrarse:</strong></p>
+<ul>
+<li><strong>Opción A - Con Google:</strong> Clic en “Sign up with Google”</li>
+<li><strong>Opción B - Con Email:</strong> Completar formulario y verificar email</li>
+</ul>
+<p><strong>Seleccionar Plan:</strong></p>
+<ul>
+<li>Elegir <strong>“Free”</strong> (gratuito)</li>
+<li>5 aplicaciones activas</li>
+<li>25 horas de uso por mes</li>
+</ul>
+<h3 id="paso-2-configurar-conexión-con-rstudio">Paso 2: Configurar Conexión con RStudio</h3>
+<p><strong>En Posit.Cloud / RStudio:</strong></p>
+<ol>
+<li><strong>Instalar paquete rsconnect:</strong></li>
+</ol>
+<pre class=" language-r"><code class="prism  language-r">install.packages<span class="token punctuation">(</span><span class="token string">"rsconnect"</span><span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>rsconnect<span class="token punctuation">)</span>
+
+</code></pre>
+<ol start="2">
+<li>
+<p><strong>Obtener credenciales de <a href="http://shinyapps.io">shinyapps.io</a>:</strong></p>
+<ul>
+<li>En <a href="http://shinyapps.io">shinyapps.io</a>, ir a: <strong>Account → Tokens</strong></li>
+<li>Clic en <strong>“Show”</strong> para ver el token</li>
+<li>Clic en <strong>“Show Secret”</strong> para ver el secret</li>
+<li>Copiar el código completo</li>
+</ul>
+</li>
+<li>
+<p><strong>Configurar en R:</strong></p>
+</li>
+</ol>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Pegar el código copiado, se verá así:</span>
+rsconnect<span class="token operator">::</span>setAccountInfo<span class="token punctuation">(</span>
+  name <span class="token operator">=</span> <span class="token string">"tu-usuario"</span><span class="token punctuation">,</span>
+  token <span class="token operator">=</span> <span class="token string">"ABC123..."</span><span class="token punctuation">,</span>
+  secret <span class="token operator">=</span> <span class="token string">"xyz789..."</span>
+<span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="paso-3-preparar-la-app">Paso 3: Preparar la App</h3>
+<p><strong>Checklist previo:</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> La app funciona sin errores</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Todos los paquetes están instalados</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Los datos se cargan correctamente</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Los gráficos se ven bien</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> El código está comentado</li>
+</ul>
+<p><strong>Verificar archivos:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Ver archivos del proyecto</span>
+list.files<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Verificar que app.R esté en la raíz</span>
+file.exists<span class="token punctuation">(</span><span class="token string">"app.R"</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="paso-4-publicar">Paso 4: Publicar</h3>
+<p><strong>Método 1 - Botón Publish (Recomendado):</strong></p>
+<ol>
+<li>Clic en botón <strong>“Publish”</strong> (🌐 ícono azul, esquina superior derecha)</li>
+<li>Seleccionar <strong>"<a href="http://shinyapps.io">shinyapps.io</a>"</strong></li>
+<li>Si es primera vez, autenticarse</li>
+<li>Elegir <strong>nombre de la app</strong> (ej: <code>dashboard-oee-itspr</code>)</li>
+<li>Seleccionar archivos a incluir (por defecto, todos)</li>
+<li>Clic en <strong>"Publish"</strong></li>
+<li>Esperar 30-90 segundos</li>
+</ol>
+<p><strong>Método 2 - Línea de comando:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Publicar app actual</span>
+rsconnect<span class="token operator">::</span>deployApp<span class="token punctuation">(</span>
+  appName <span class="token operator">=</span> <span class="token string">"mi-dashboard-manufactura"</span><span class="token punctuation">,</span>
+  appTitle <span class="token operator">=</span> <span class="token string">"Dashboard KPIs - ITSPR 2025"</span>
+<span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="paso-5-verificar-publicación">Paso 5: Verificar Publicación</h3>
+<p><strong>Se abrirá automáticamente:</strong></p>
+<ul>
+<li>URL tipo: <code>https://tu-usuario.shinyapps.io/nombre-app/</code></li>
+<li>La app funcionando en producción</li>
+</ul>
+<p><strong>Panel de Control:</strong></p>
+<ul>
+<li>Ir a: <strong><a href="https://www.shinyapps.io/admin/">https://www.shinyapps.io/admin/</a></strong></li>
+<li>Ver métricas de uso</li>
+<li>Configurar opciones</li>
+</ul>
+<h3 id="paso-6-compartir-tu-dashboard">Paso 6: Compartir tu Dashboard</h3>
+<p><strong>Obtener URL:</strong></p>
+<pre><code>https://tu-usuario.shinyapps.io/dashboard-oee-itspr/
+
+</code></pre>
+<p><strong>Opciones de compartir:</strong></p>
+<ul>
+<li>🔎 Copiar link directo</li>
+<li>📧 Enviar por email</li>
+<li>💬 Compartir en redes sociales</li>
+<li>📱 Acceso desde cualquier dispositivo</li>
+</ul>
+<p><strong>Configurar Visibilidad:</strong></p>
+<ol>
+<li>En <a href="http://shinyapps.io">shinyapps.io</a> → Settings</li>
+<li>Opciones:
+<ul>
+<li><strong>Public:</strong> Cualquiera con el link puede acceder</li>
+<li><strong>Private:</strong> Solo usuarios autorizados</li>
+<li><strong>Password Protected:</strong> Requiere contraseña</li>
+</ul>
+</li>
+</ol>
+<h3 id="paso-7-actualizar-la-app">Paso 7: Actualizar la App</h3>
+<p><strong>Cuando hagas cambios:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Simplemente volver a publicar</span>
+rsconnect<span class="token operator">::</span>deployApp<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># O usar el botón Publish nuevamente</span>
+<span class="token comment"># Sobrescribirá la versión anterior</span>
+
+</code></pre>
+<hr>
+<h2 id="🔧-solución-de-problemas-en-publicación">🔧 Solución de Problemas en Publicación</h2>
+<h3 id="error-account-not-configured">Error: “Account not configured”</h3>
+<p><strong>Solución:</strong> Ejecutar nuevamente <code>rsconnect::setAccountInfo()</code></p>
+<h3 id="error-package-x-is-not-available">Error: “Package X is not available”</h3>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Instalar paquete faltante</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"nombre_paquete"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Volver a publicar</span>
+rsconnect<span class="token operator">::</span>deployApp<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="error-application-failed-to-start">Error: “Application failed to start”</h3>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Revisar logs en <a href="http://shinyapps.io">shinyapps.io</a></li>
+<li>Verificar que la app funcione localmente</li>
+<li>Comprobar rutas de archivos (usar rutas relativas)</li>
+</ol>
+<h3 id="la-app-se-publica-pero-no-carga-datos">La app se publica pero no carga datos</h3>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Usar rutas relativas</span>
+datos <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span><span class="token string">"datos/archivo.csv"</span><span class="token punctuation">)</span>  <span class="token comment"># ✅ Correcto</span>
+
+<span class="token comment"># NO usar rutas absolutas</span>
+datos <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span><span class="token string">"/cloud/project/datos/archivo.csv"</span><span class="token punctuation">)</span>  <span class="token comment"># ❌ Error</span>
+
+</code></pre>
+<hr>
+<h2 id="💡-límites-del-plan-gratuito">💡 Límites del Plan Gratuito</h2>
+
+<table>
+<thead>
+<tr>
+<th>Límite</th>
+<th>Cantidad</th>
+<th>Qué hacer si excede</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apps activas</td>
+<td>5</td>
+<td>Archivar apps viejas</td>
+</tr>
+<tr>
+<td>Horas de uso</td>
+<td>25/mes</td>
+<td>Optimizar apps, upgrade</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>1 GB</td>
+<td>Reducir datos, upgrade</td>
+</tr>
+<tr>
+<td>Tamaño app</td>
+<td>1 GB</td>
+<td>Comprimir archivos</td>
+</tr>
+</tbody>
+</table><p><strong>Tips para ahorrar horas:</strong></p>
+<ul>
+<li>⏱️ Configurar sleep automático (después de 15 min de inactividad)</li>
+<li>🔄 No usar <code>invalidateLater()</code> muy frecuente</li>
+<li>💾 Cachear datos cuando sea posible</li>
+</ul>
+<hr>
+<h2 id="📊-monitoreo-de-tu-app">📊 Monitoreo de tu App</h2>
+<p><strong>En <a href="http://shinyapps.io">shinyapps.io</a> Dashboard:</strong></p>
+<ul>
+<li>📈 <strong>Metrics:</strong> Visitas, horas usadas, errores</li>
+<li>📋 <strong>Logs:</strong> Ver errores en tiempo real</li>
+<li>⚙️ <strong>Settings:</strong> Configurar sleep, instancias, etc.</li>
+<li>📊 <strong>Usage:</strong> Gráficos de uso por día/semana</li>
+</ul>
+<p><strong>Comandos útiles:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Ver apps publicadas</span>
+rsconnect<span class="token operator">::</span>applications<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Ver logs de una app</span>
+rsconnect<span class="token operator">::</span>showLogs<span class="token punctuation">(</span>appName <span class="token operator">=</span> <span class="token string">"mi-dashboard"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Terminar app (para ahorrar horas)</span>
+rsconnect<span class="token operator">::</span>terminateApp<span class="token punctuation">(</span>appName <span class="token operator">=</span> <span class="token string">"mi-dashboard"</span><span class="token punctuation">)</span>
+
+</code></pre>
+<hr>
+<h1 id="recursos-y-referencias">RECURSOS Y REFERENCIAS</h1>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="50"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="60"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="45"> </div>
+<h2 id="📚-documentación-oficial">📚 Documentación Oficial</h2>
+<h3 id="shiny">Shiny</h3>
+<ul>
+<li>🌐 <a href="https://shiny.posit.co/">Sitio oficial</a></li>
+<li>📖 <a href="https://shiny.posit.co/r/reference/">Guía de referencia</a></li>
+<li>🎥 <a href="https://shiny.posit.co/r/tutorial/">Video tutoriales</a></li>
+<li>📘 <a href="https://mastering-shiny.org/">Mastering Shiny (libro)</a></li>
+</ul>
+<h3 id="shinyapps.io-publicación"><a href="http://shinyapps.io">shinyapps.io</a> (Publicación)</h3>
+<ul>
+<li>🚀 <a href="https://www.shinyapps.io/">Sitio oficial</a></li>
+<li>📖 <a href="https://docs.posit.co/shinyapps.io/">Guía de usuario</a></li>
+<li>💡 <a href="https://docs.posit.co/shinyapps.io/troubleshooting.html">Troubleshooting</a></li>
+<li>📊 <a href="https://docs.posit.co/shinyapps.io/metrics.html">Métricas y monitoring</a></li>
+</ul>
+<h3 id="bslib-diseño">bslib (Diseño)</h3>
+<ul>
+<li>📝 <a href="https://rstudio.github.io/bslib/">Documentación</a></li>
+<li>🎨 <a href="https://bootswatch.com/">Temas Bootstrap</a></li>
+<li>🧩 <a href="https://rstudio.github.io/bslib/articles/theming.html">Componentes</a></li>
+</ul>
+<h3 id="visualización">Visualización</h3>
+<ul>
+<li>📊 <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">ggplot2 cheatsheet</a></li>
+<li>📈 <a href="https://plotly.com/r/">Plotly para R</a></li>
+<li>📋 <a href="https://rstudio.github.io/DT/">DT (tablas)</a></li>
+</ul>
+<h2 id="🎓-cursos-recomendados">🎓 Cursos Recomendados</h2>
+<h3 id="gratuitos">Gratuitos:</h3>
+<ul>
+<li>▶️ <strong>DataCamp:</strong> Building Web Applications with Shiny</li>
+<li>📺 <strong>YouTube:</strong> RStudio Shiny Tutorial Series</li>
+<li>📝 <strong>Posit Recipes:</strong> Shiny Examples</li>
+</ul>
+<h3 id="de-pago">De Pago:</h3>
+<ul>
+<li>🎓 <strong>Coursera:</strong> Developing Data Products (Johns Hopkins)</li>
+<li>💼 <strong>LinkedIn Learning:</strong> Learning Shiny</li>
+<li>🏆 <strong>Udemy:</strong> Shiny Dashboards Course</li>
+</ul>
+<h2 id="🛠️-herramientas-útiles">🛠️ Herramientas Útiles</h2>
+<h3 id="paquetes-complementarios">Paquetes Complementarios:</h3>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Más gráficos</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"highcharter"</span><span class="token punctuation">)</span>  <span class="token comment"># Gráficos Highcharts</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"echarts4r"</span><span class="token punctuation">)</span>    <span class="token comment"># Gráficos ECharts</span>
+
+<span class="token comment"># Más componentes UI</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"shinyWidgets"</span><span class="token punctuation">)</span>    <span class="token comment"># Widgets adicionales</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"shinydashboard"</span><span class="token punctuation">)</span>  <span class="token comment"># Dashboard layout</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"bs4Dash"</span><span class="token punctuation">)</span>         <span class="token comment"># Bootstrap 4 dashboard</span>
+
+<span class="token comment"># Datos</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"readr"</span><span class="token punctuation">)</span>      <span class="token comment"># Leer CSV rápido</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"data.table"</span><span class="token punctuation">)</span> <span class="token comment"># Manipulación rápida</span>
+install.packages<span class="token punctuation">(</span><span class="token string">"pool"</span><span class="token punctuation">)</span>       <span class="token comment"># Conexiones a BD</span>
+
+</code></pre>
+<h3 id="editores-de-código">Editores de Código:</h3>
+<ul>
+<li>💻 <strong>RStudio Desktop</strong> (recomendado)</li>
+<li>🔵 <strong>VS Code</strong> + R Extension</li>
+<li>⚛️ <strong>Positron</strong> (nuevo IDE de Posit)</li>
+</ul>
+<hr>
+<h1 id="solución-de-problemas">SOLUCIÓN DE PROBLEMAS</h1>
+<h2 id="❓-problemas-comunes-y-soluciones">❓ Problemas Comunes y Soluciones</h2>
+<h3 id="error-could-not-find-function...">1. Error: “could not find function…”</h3>
+<p><strong>Causa:</strong> Paquete no cargado</p>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Verificar que el paquete esté instalado</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>require<span class="token punctuation">(</span><span class="token string">"shiny"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> install.packages<span class="token punctuation">(</span><span class="token string">"shiny"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Cargar el paquete</span>
+library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="la-app-no-se-actualiza">2. La app no se actualiza</h3>
+<p><strong>Causa:</strong> Cambios no guardados o caché</p>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Guardar archivo (Ctrl+S)</span>
+<span class="token comment"># Detener app (Stop button rojo)</span>
+<span class="token comment"># Limpiar workspace</span>
+rm<span class="token punctuation">(</span>list <span class="token operator">=</span> ls<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># Volver a ejecutar</span>
+
+</code></pre>
+<h3 id="error-al-cargar-datos-csv">3. Error al cargar datos CSV</h3>
+<p><strong>Causa:</strong> Ruta incorrecta o archivo no encontrado</p>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Verificar ruta actual</span>
+getwd<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Listar archivos</span>
+list.files<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Usar ruta relativa correcta</span>
+datos <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span><span class="token string">"datos/archivo.csv"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># O ruta completa</span>
+datos <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span><span class="token string">"/cloud/project/datos/archivo.csv"</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="gráfico-no-se-muestra">4. Gráfico no se muestra</h3>
+<p><strong>Causa:</strong> Dimensiones incorrectas o error en el código</p>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Especificar altura del gráfico</span>
+plotOutput<span class="token punctuation">(</span><span class="token string">"mi_grafico"</span><span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token string">"400px"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Verificar que renderPlot tenga código válido</span>
+output<span class="token operator">$</span>mi_grafico <span class="token operator">&lt;-</span> renderPlot<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment"># Debe retornar un objeto gráfico</span>
+  plot<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="app-muy-lenta">5. App muy lenta</h3>
+<p><strong>Causa:</strong> Cálculos repetitivos o datos grandes</p>
+<p><strong>Solución:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Usar reactive() para cálculos costosos</span>
+datos_procesados <span class="token operator">&lt;-</span> reactive<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment"># Solo se ejecuta cuando cambian los inputs</span>
+  procesar_datos<span class="token punctuation">(</span>input<span class="token operator">$</span>parametro<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Limitar actualizaciones</span>
+observeEvent<span class="token punctuation">(</span>input<span class="token operator">$</span>actualizar<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token comment"># Solo actualiza cuando se hace clic</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="no-puedo-publicar">6. No puedo publicar</h3>
+<p><strong>Causa:</strong> Cuenta sin permisos o límite alcanzado</p>
+<p><strong>Solución:</strong></p>
+<ul>
+<li>Verificar plan de Posit.Cloud (Free = 25 hrs/mes)</li>
+<li>Eliminar apps antiguas para liberar espacio</li>
+<li>Actualizar plan si es necesario</li>
+</ul>
+<hr>
+<h2 id="💡-tips-y-mejores-prácticas">💡 Tips y Mejores Prácticas</h2>
+<h3 id="desarrollo">Desarrollo:</h3>
+<ol>
+<li><strong>Comentar el código</strong> mientras escribes</li>
+<li><strong>Probar frecuentemente</strong> cada componente</li>
+<li><strong>Usar nombres descriptivos</strong> para variables</li>
+<li><strong>Modularizar funciones</strong> complejas</li>
+<li><strong>Guardar versiones</strong> regularmente</li>
+</ol>
+<h3 id="diseño">Diseño:</h3>
+<ol>
+<li><strong>Menos es más</strong> - evita saturar la interfaz</li>
+<li><strong>Jerarquía visual</strong> - lo importante arriba</li>
+<li><strong>Colores consistentes</strong> - usa paleta definida</li>
+<li><strong>Espaciado adecuado</strong> - respira el diseño</li>
+<li><strong>Mobile-first</strong> - piensa en dispositivos móviles</li>
+</ol>
+<h3 id="rendimiento">Rendimiento:</h3>
+<ol>
+<li><strong>Cachear datos</strong> cuando sea posible</li>
+<li><strong>reactive() para compartir</strong> cálculos</li>
+<li><strong>Limitar actualizaciones</strong> automáticas</li>
+<li><strong>Optimizar gráficos</strong> (menos puntos si es necesario)</li>
+<li><strong>Cargar datos fuera</strong> del server cuando puedas</li>
+</ol>
+<hr>
+<h2 id="📝-notas-del-taller">📝 NOTAS DEL TALLER</h2>
+<p><em>Espacio para tus anotaciones:</em></p>
+<h3 id="conceptos-clave">Conceptos Clave:</h3>
+<ul>
+<li>Listar item:</li>
+<li>Listar item:</li>
+<li>Listar item:</li>
+</ul>
+<h3 id="dudas-a-resolver">Dudas a Resolver:</h3>
+<ul>
+<li>Listar item:</li>
+<li>Listar item:</li>
+<li>Listar item:</li>
+</ul>
+<h3 id="ideas-para-aplicar">Ideas para Aplicar:</h3>
+<ul>
+<li>Listar item:</li>
+<li>Listar item:</li>
+<li>Listar item:</li>
+</ul>
+<hr>
+<h2 id="✅-checklist-de-finalización">✅ CHECKLIST DE FINALIZACIÓN</h2>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Completé los 4 ejercicios</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Entiendo el cálculo de OEE</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Creé un dashboard funcional</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Creé cuenta en <a href="http://shinyapps.io">shinyapps.io</a></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Configuré rsconnect</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Publiqué mi app en <a href="http://shinyapps.io">shinyapps.io</a></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Guardé todos mis archivos</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Tengo el enlace de mi dashboard</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Descargué los materiales del taller</li>
+</ul>
+<hr>
+<h2 id="🎓-certificado-de-participación">🎓 CERTIFICADO DE PARTICIPACIÓN</h2>
+<p>Para obtener tu certificado:</p>
+<ol>
+<li>Completar los 4 ejercicios</li>
+<li>Publicar al menos 1 dashboard funcional</li>
+<li>Llenar encuesta de satisfacción</li>
+<li>Enviar evidencia a: [email del instructor]</li>
+</ol>
+<p><strong>Formato de evidencia:</strong></p>
+<ul>
+<li>URL de tu dashboard publicado</li>
+<li>Captura de pantalla de la app funcionando</li>
+<li>Breve descripción (50-100 palabras)</li>
+</ul>
+<hr>
+<h2 id="📞-contacto-post-taller">📞 CONTACTO POST-TALLER</h2>
+<p>¿Dudas después del taller?</p>
+<p><strong>Instructor:</strong> 📧 [fausto.noej@sabes.edu.mx]<br>
+💼 LinkedIn: [<a href="https://www.linkedin.com/in/fnjimenez">https://www.linkedin.com/in/fnjimenez</a>]</p>
+<hr>
+<h2 id="🌟-próximos-pasos">🌟 PRÓXIMOS PASOS</h2>
+<h3 id="semana-1-post-taller">Semana 1 Post-Taller:</h3>
+<ul>
+<li>Repasar conceptos aprendidos</li>
+<li>Completar ejercicios pendientes</li>
+<li>Experimentar con personalizaciones</li>
+</ul>
+<h3 id="semana-2-4">Semana 2-4:</h3>
+<ul>
+<li>Aplicar a un caso real de tu contexto</li>
+<li>Explorar paquetes adicionales</li>
+<li>Compartir tu trabajo</li>
+</ul>
+<h3 id="largo-plazo">Largo Plazo:</h3>
+<ul>
+<li>Profundizar en temas avanzados</li>
+<li>Contribuir a la comunidad R</li>
+<li>Desarrollar portfolio de proyectos</li>
+</ul>
+<hr>
+<p><strong>¡Gracias por participar en el taller!</strong> 🎉</p>
+<p><strong>Éxito en tus proyectos con Shiny</strong> 🚀</p>
+<hr>
+<p><em>Manual creado para la Semana Tecnológica 2025</em><br>
+<em>Instituto Tecnológico Superior de Purísima del Rincón</em><br>
+<em>Octubre 2025</em></p>
+<div align="center"> <p><strong>Powered by:</strong></p> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R" height="35"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny" height="25"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit" height="25"> </div>
+</div>
+</body>
+
+</html>
