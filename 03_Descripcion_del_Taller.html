@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_Descripcion_del_Taller</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="🎓-taller-dashboards-shiny-express-con-r">🎓 TALLER: DASHBOARDS SHINY EXPRESS CON R</h1>
+<h2 id="kpis-de-manufactura-en-tiempo-real-con-r-shiny-en-posit.cloud">KPIs de Manufactura en Tiempo Real con R (Shiny) en Posit.Cloud</h2>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="100"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="120"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="90"> </div>
+<p><strong>📅 Fecha:</strong> 15 de octubre de 2025<br>
+<strong>⏰ Horario:</strong> 08:00 - 10:00 y 11:00 - 13:00 h (4 horas + 1 hora de receso)<br>
+<strong>👨‍🏫 Instructor:</strong> Mtro. Fausto Noé Jiménez<br>
+<strong>🏫 Sede:</strong> ITSPR - Instituto Tecnológico Superior de Purísima del Rincón</p>
+<hr>
+<h2 id="🎯-objetivos-del-taller">🎯 OBJETIVOS DEL TALLER</h2>
+<p><strong>Objetivo General:</strong> Desarrollar habilidades prácticas para crear dashboards interactivos en tiempo real usando Shiny Express, enfocados en visualizar y analizar KPIs críticos de manufactura.</p>
+<p><strong>Objetivos Específicos:</strong></p>
+<ol>
+<li>Comprender la arquitectura de Shiny Express y sus ventajas sobre Shiny tradicional</li>
+<li>Implementar KPIs de manufactura (OEE, MTBF, MTTR, Calidad, Productividad)</li>
+<li>Crear dashboards interactivos con actualización en tiempo real</li>
+<li>Desplegar aplicaciones en <a href="http://shinyapps.io">shinyapps.io</a> para acceso público</li>
+<li>Aplicar mejores prácticas de visualización de datos industriales</li>
+</ol>
+<hr>
+<h2 id="📋-agenda-detallada">📋 AGENDA DETALLADA</h2>
+<h3 id="🌅-primera-parte-0800---1000---120-minutos"><strong>🌅 PRIMERA PARTE (08:00 - 10:00) - 120 minutos</strong></h3>
+<hr>
+<h3 id="módulo-1-introducción-y-configuración-0800---0830---30-min"><strong>MÓDULO 1: Introducción y Configuración (08:00 - 08:30) - 30 min</strong></h3>
+<div align="center"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="60"> </div>
+<h4 id="bienvenida-y-presentación">08:00 - 08:10 | Bienvenida y Presentación</h4>
+<ul>
+<li>Presentación del instructor y participantes</li>
+<li>Contexto: Industria 4.0 y visualización de datos en manufactura</li>
+<li>Objetivos y alcance del taller</li>
+<li>Revisión de la agenda</li>
+</ul>
+<h4 id="¿qué-es-shiny-express">08:10 - 08:20 | ¿Qué es Shiny Express?</h4>
+<ul>
+<li>Evolución: Shiny tradicional vs Shiny Express</li>
+<li>Ventajas de Shiny Express: menos código, más rápido</li>
+<li>Casos de uso en la industria</li>
+<li>Demostración de dashboard completo (preview)</li>
+</ul>
+<h4 id="configuración-del-entorno">08:20 - 08:30 | Configuración del Entorno</h4>
+<ul>
+<li>Crear cuenta en Posit.Cloud (si no tienen)</li>
+<li>Crear nuevo proyecto en Posit.Cloud</li>
+<li>Instalación de paquetes necesarios</li>
+<li>Verificar que todo funcione correctamente</li>
+</ul>
+<p><strong>Entregable:</strong> Entorno configurado y funcionando</p>
+<hr>
+<h3 id="módulo-2-fundamentos-de-shiny-express-0830---1000---90-min"><strong>MÓDULO 2: Fundamentos de Shiny Express (08:30 - 10:00) - 90 min</strong></h3>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="50"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="60"> </div>
+<h4 id="estructura-básica-de-shiny-express">08:30 - 09:00 | Estructura Básica de Shiny Express</h4>
+<ul>
+<li>Anatomía de una app Shiny Express</li>
+<li>Sintaxis simplificada vs Shiny tradicional</li>
+<li>Componentes principales: UI y Server integrados</li>
+<li>Primera app: “Hola Manufactura”</li>
+</ul>
+<p><strong>Ejercicio 1:</strong> Crear primera app interactiva (20 min)</p>
+<pre class=" language-r"><code class="prism  language-r">library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>bslib<span class="token punctuation">)</span>
+
+ui <span class="token operator">&lt;-</span> page_sidebar<span class="token punctuation">(</span>
+  title <span class="token operator">=</span> <span class="token string">"Mi Primera App Industrial"</span><span class="token punctuation">,</span>
+  sidebar <span class="token operator">=</span> sidebar<span class="token punctuation">(</span>
+    sliderInput<span class="token punctuation">(</span><span class="token string">"produccion"</span><span class="token punctuation">,</span> <span class="token string">"Unidades:"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  value_box<span class="token punctuation">(</span>
+    title <span class="token operator">=</span> <span class="token string">"Producción"</span><span class="token punctuation">,</span>
+    value <span class="token operator">=</span> textOutput<span class="token punctuation">(</span><span class="token string">"resultado"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+server <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  output<span class="token operator">$</span>resultado <span class="token operator">&lt;-</span> renderText<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    paste<span class="token punctuation">(</span>input<span class="token operator">$</span>produccion<span class="token punctuation">,</span> <span class="token string">"unidades"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+shinyApp<span class="token punctuation">(</span>ui<span class="token punctuation">,</span> server<span class="token punctuation">)</span>
+
+</code></pre>
+<h4 id="componentes-interactivos-y-dashboard-de-calidad">09:00 - 10:00 | Componentes Interactivos y Dashboard de Calidad</h4>
+<ul>
+<li>Inputs: sliders, selectores, botones</li>
+<li>Outputs: tablas, gráficos, métricas</li>
+<li>Layouts: cards, sidebars, grids</li>
+<li>Reactividad: cómo funciona el flujo de datos</li>
+</ul>
+<p><strong>Ejercicio 2:</strong> Dashboard de control de calidad (45 min)</p>
+<ul>
+<li>Implementar cálculo de FPY</li>
+<li>Crear gráficos con ggplot2</li>
+<li>Agregar selectores de turno</li>
+<li>Sistema de alertas visual</li>
+</ul>
+<hr>
+<h3 id="☕-receso-1000---1100---60-min"><strong>☕ RECESO (10:00 - 11:00) - 60 min</strong></h3>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="60"> </div>
+<p><strong>Intermedio de Alumnos</strong></p>
+<p>Tiempo para:</p>
+<ul>
+<li>Descanso y refrigerio</li>
+<li>Networking con otros participantes</li>
+<li>Experimentar con los ejercicios vistos</li>
+<li>Preparar dudas para la segunda parte</li>
+</ul>
+<hr>
+<h3 id="🌆-segunda-parte-1100---1300---120-minutos"><strong>🌆 SEGUNDA PARTE (11:00 - 13:00) - 120 minutos</strong></h3>
+<hr>
+<h3 id="módulo-3-kpis-de-manufactura-1100---1145---45-min"><strong>MÓDULO 3: KPIs de Manufactura (11:00 - 11:45) - 45 min</strong></h3>
+<h3 id="módulo-3-kpis-de-manufactura-1100---1145---45-min-1"><strong>MÓDULO 3: KPIs de Manufactura (11:00 - 11:45) - 45 min</strong></h3>
+<h4 id="kpis-fundamentales-en-manufactura">11:00 - 11:20 | KPIs Fundamentales en Manufactura</h4>
+<p><strong>1. OEE (Overall Equipment Effectiveness)</strong></p>
+<ul>
+<li>Fórmula: OEE = Disponibilidad × Rendimiento × Calidad</li>
+<li>Componentes: Tiempo disponible, tiempo productivo, unidades buenas</li>
+<li>Interpretación: World Class OEE ≥ 85%</li>
+</ul>
+<p><strong>2. MTBF (Mean Time Between Failures)</strong></p>
+<ul>
+<li>Fórmula: MTBF = Tiempo Total Operativo / Número de Fallas</li>
+<li>Aplicación: Mantenimiento predictivo</li>
+<li>Meta típica: &gt; 200 horas</li>
+</ul>
+<p><strong>3. MTTR (Mean Time To Repair)</strong></p>
+<ul>
+<li>Fórmula: MTTR = Tiempo Total de Reparación / Número de Reparaciones</li>
+<li>Aplicación: Eficiencia de mantenimiento</li>
+<li>Meta típica: &lt; 2 horas</li>
+</ul>
+<p><strong>4. First Pass Yield (FPY)</strong></p>
+<ul>
+<li>Fórmula: FPY = (Unidades buenas primera vez / Unidades totales) × 100</li>
+<li>Meta típica: &gt; 95%</li>
+</ul>
+<p><strong>5. Takt Time vs Cycle Time</strong></p>
+<ul>
+<li>Takt Time = Tiempo disponible / Demanda del cliente</li>
+<li>Cycle Time = Tiempo real de producción por unidad</li>
+</ul>
+<h4 id="implementación-de-oee-en-r">11:20 - 11:45 | Implementación de OEE en R</h4>
+<p><strong>Ejercicio 3:</strong> Calculadora OEE interactiva (25 min)</p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Función para calcular OEE</span>
+calcular_oee <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>disponibilidad<span class="token punctuation">,</span> rendimiento<span class="token punctuation">,</span> calidad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  oee <span class="token operator">&lt;-</span> disponibilidad <span class="token operator">*</span> rendimiento <span class="token operator">*</span> calidad
+  
+  categoria <span class="token operator">&lt;-</span> case_when<span class="token punctuation">(</span>
+    oee <span class="token operator">&gt;=</span> <span class="token number">0.85</span> <span class="token operator">~</span> <span class="token string">"World Class"</span><span class="token punctuation">,</span>
+    oee <span class="token operator">&gt;=</span> <span class="token number">0.65</span> <span class="token operator">~</span> <span class="token string">"Bueno"</span><span class="token punctuation">,</span>
+    oee <span class="token operator">&gt;=</span> <span class="token number">0.40</span> <span class="token operator">~</span> <span class="token string">"Regular"</span><span class="token punctuation">,</span>
+    <span class="token boolean">TRUE</span> <span class="token operator">~</span> <span class="token string">"Deficiente"</span>
+  <span class="token punctuation">)</span>
+  
+  list<span class="token punctuation">(</span>
+    oee <span class="token operator">=</span> oee <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    categoria <span class="token operator">=</span> categoria<span class="token punctuation">,</span>
+    disponibilidad <span class="token operator">=</span> disponibilidad <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    rendimiento <span class="token operator">=</span> rendimiento <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    calidad <span class="token operator">=</span> calidad <span class="token operator">*</span> <span class="token number">100</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p><strong>Dataset de práctica:</strong> Datos de producción de línea de ensamble</p>
+<hr>
+<h3 id="módulo-4-dashboard-de-manufactura-completo-1145---1250---65-min"><strong>MÓDULO 4: Dashboard de Manufactura Completo (11:45 - 12:50) - 65 min</strong></h3>
+<h3 id="módulo-4-dashboard-de-manufactura-completo-1145---1250---65-min-1"><strong>MÓDULO 4: Dashboard de Manufactura Completo (11:45 - 12:50) - 65 min</strong></h3>
+<h4 id="diseño-de-dashboard-industrial-20-min">11:45 - 12:05 | Diseño de Dashboard Industrial (20 min)</h4>
+<p><strong>Mejores prácticas:</strong></p>
+<ul>
+<li>Jerarquía visual: KPIs principales arriba</li>
+<li>Código de colores: Verde (bueno), Amarillo (alerta), Rojo (crítico)</li>
+<li>Actualización automática cada N segundos</li>
+<li>Gráficos apropiados: gauges, sparklines, control charts</li>
+</ul>
+<p><strong>Estructura del Dashboard:</strong></p>
+<pre><code>┌─────────────────────────────────────────┐
+│  PANEL DE CONTROL - LÍNEA PRODUCCIÓN A  │
+├─────────────────────────────────────────┤
+│  [OEE: 82%] [MTBF: 180h] [FPY: 94%]     │
+├─────────────────────────────────────────┤
+│  📊 Gráfico Tendencia   │  📈 Pareto    │
+│                         │               │
+├─────────────────────────────────────────┤
+│  📋 Tabla Detallada de Incidencias      │
+└─────────────────────────────────────────┘
+
+</code></pre>
+<h4 id="proyecto-integrador-45-min">12:05 - 12:50 | Proyecto Integrador (45 min)</h4>
+<p><strong>Ejercicio 4:</strong> Crear Dashboard Completo</p>
+<p><strong>Componentes a incluir:</strong></p>
+<ol>
+<li><strong>Sidebar:</strong> Filtros de fecha, turno, línea de producción</li>
+<li><strong>Value Boxes:</strong> OEE, MTBF, MTTR, FPY</li>
+<li><strong>Gráfico de línea:</strong> Tendencia de OEE por hora</li>
+<li><strong>Gráfico de barras:</strong> Causas de downtime (Pareto)</li>
+<li><strong>Tabla:</strong> Registro de incidencias</li>
+<li><strong>Gauge chart:</strong> Nivel de cumplimiento de meta</li>
+</ol>
+<p><strong>Actualización en tiempo real:</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Simulación de datos en tiempo real</span>
+observeEvent<span class="token punctuation">(</span>input<span class="token operator">$</span>auto_refresh<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>input<span class="token operator">$</span>auto_refresh<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    invalidateLater<span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span>  <span class="token comment"># Actualizar cada 5 segundos</span>
+    datos<span class="token punctuation">(</span>obtener_datos_recientes<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+</code></pre>
+<hr>
+<h3 id="módulo-5-despliegue-y-cierre-1250---1300---10-min"><strong>MÓDULO 5: Despliegue y Cierre (12:50 - 13:00) - 10 min</strong></h3>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="70"> </div>
+<h3 id="módulo-5-despliegue-y-cierre-1250---1300---10-min-1"><strong>MÓDULO 5: Despliegue y Cierre (12:50 - 13:00) - 10 min</strong></h3>
+<div align="center"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="70"> </div>
+<h4 id="publicación-en-shinyapps.io-y-cierre">12:50 - 13:00 | Publicación en <a href="http://shinyapps.io">shinyapps.io</a> y Cierre</h4>
+<p><strong>Publicación en <a href="http://shinyapps.io">shinyapps.io</a>:</strong></p>
+<ol>
+<li>Crear cuenta en <a href="http://shinyapps.io">shinyapps.io</a> (si no tienen)</li>
+<li>Configurar rsconnect</li>
+<li>Clic en “Publish” → “<a href="http://shinyapps.io">shinyapps.io</a>”</li>
+<li>Obtener URL pública: <code>https://usuario.shinyapps.io/app/</code></li>
+</ol>
+<p><strong>Ventajas de <a href="http://shinyapps.io">shinyapps.io</a>:</strong></p>
+<ul>
+<li>✅ 5 apps gratuitas</li>
+<li>✅ 25 horas/mes de uso</li>
+<li>✅ Fácil de compartir</li>
+<li>✅ Acceso desde cualquier dispositivo</li>
+</ul>
+<p><strong>Cierre del taller:</strong></p>
+<ul>
+<li>Mejores prácticas resumidas</li>
+<li>Recursos adicionales (<a href="http://shinyapps.io">shinyapps.io</a> docs)</li>
+<li>Próximos pasos</li>
+<li>Q&amp;A rápida</li>
+<li>Evaluación del taller</li>
+</ul>
+<hr>
+<h2 id="📚-materiales-requeridos">📚 MATERIALES REQUERIDOS</h2>
+<h3 id="pre-requisitos-de-los-participantes">Pre-requisitos de los Participantes:</h3>
+<ul>
+<li>✅ Laptop con navegador web actualizado</li>
+<li>✅ Cuenta de correo electrónico</li>
+<li>✅ Cuenta en Posit.Cloud (para desarrollo)</li>
+<li>✅ Cuenta en <a href="http://shinyapps.io">shinyapps.io</a> (para publicación - se crea en el taller)</li>
+<li>✅ Conocimientos básicos de R (deseable pero no obligatorio)</li>
+<li>✅ Interés en manufactura/ingeniería industrial</li>
+</ul>
+<h3 id="materiales-proporcionados">Materiales Proporcionados:</h3>
+<ul>
+<li>📝 Datasets de ejemplo (CSV)</li>
+<li>💻 Código base de las aplicaciones</li>
+<li>📊 Plantillas de dashboards</li>
+<li>📍 Manual de referencia rápida</li>
+<li>🔗 Lista de recursos en línea</li>
+</ul>
+<hr>
+<h2 id="🎯-kpis-del-taller-meta-de-aprendizaje">🎯 KPIS DEL TALLER (META DE APRENDIZAJE)</h2>
+<p>Al finalizar, los participantes podrán:</p>
+
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Meta</th>
+<th>Medición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comprensión conceptual</td>
+<td>90%</td>
+<td>Quiz rápido</td>
+</tr>
+<tr>
+<td>Apps creadas</td>
+<td>100%</td>
+<td>Al menos 1 app funcional</td>
+</tr>
+<tr>
+<td>Publicación exitosa</td>
+<td>80%</td>
+<td>App desplegada en <a href="http://shinyapps.io">shinyapps.io</a></td>
+</tr>
+<tr>
+<td>Satisfacción</td>
+<td>≥ 4.5/5</td>
+<td>Encuesta post-taller</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="📊-datasets-de-práctica">📊 DATASETS DE PRÁCTICA</h2>
+<h3 id="dataset-1-línea-de-producción-a">Dataset 1: Línea de Producción A</h3>
+<ul>
+<li><strong>Variables:</strong> fecha, turno, unidades_planeadas, unidades_producidas, unidades_defectuosas, tiempo_downtime, causa_downtime</li>
+<li><strong>Registros:</strong> 1,000 observaciones</li>
+<li><strong>Formato:</strong> CSV</li>
+</ul>
+<h3 id="dataset-2-registro-de-mantenimiento">Dataset 2: Registro de Mantenimiento</h3>
+<ul>
+<li><strong>Variables:</strong> equipo_id, fecha_falla, fecha_reparacion, tipo_falla, tiempo_reparacion, costo</li>
+<li><strong>Registros:</strong> 500 observaciones</li>
+<li><strong>Formato:</strong> CSV</li>
+</ul>
+<h3 id="dataset-3-control-de-calidad">Dataset 3: Control de Calidad</h3>
+<ul>
+<li><strong>Variables:</strong> lote, fecha, medicion_1, medicion_2, medicion_3, especificacion_min, especificacion_max, resultado</li>
+<li><strong>Registros:</strong> 2,000 observaciones</li>
+<li><strong>Formato:</strong> CSV</li>
+</ul>
+<hr>
+<h2 id="🔧-paquetes-de-r-utilizados">🔧 PAQUETES DE R UTILIZADOS</h2>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="60"> </div>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Instalar paquetes necesarios</span>
+install.packages<span class="token punctuation">(</span>c<span class="token punctuation">(</span>
+  <span class="token string">"shiny"</span><span class="token punctuation">,</span>           <span class="token comment"># Framework principal</span>
+  <span class="token string">"bslib"</span><span class="token punctuation">,</span>           <span class="token comment"># Temas y estilos modernos</span>
+  <span class="token string">"dplyr"</span><span class="token punctuation">,</span>           <span class="token comment"># Manipulación de datos</span>
+  <span class="token string">"ggplot2"</span><span class="token punctuation">,</span>         <span class="token comment"># Gráficos</span>
+  <span class="token string">"plotly"</span><span class="token punctuation">,</span>          <span class="token comment"># Gráficos interactivos</span>
+  <span class="token string">"DT"</span><span class="token punctuation">,</span>              <span class="token comment"># Tablas interactivas</span>
+  <span class="token string">"lubridate"</span><span class="token punctuation">,</span>       <span class="token comment"># Manejo de fechas</span>
+  <span class="token string">"scales"</span><span class="token punctuation">,</span>          <span class="token comment"># Formateo de números</span>
+  <span class="token string">"shinyWidgets"</span><span class="token punctuation">,</span>    <span class="token comment"># Widgets adicionales</span>
+  <span class="token string">"fresh"</span>            <span class="token comment"># Temas personalizados</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre>
+<hr>
+<h2 id="📞-información-de-contacto">📞 INFORMACIÓN DE CONTACTO</h2>
+<p><strong>Instructor:</strong> Mtro. Fausto Noé Jiménez<br>
+<strong>Email:</strong> [correo del instructor]<br>
+<strong>LinkedIn:</strong> [perfil profesional]</p>
+<p><strong>Sede:</strong> ITSPR - Instituto Tecnológico Superior de Purísima del Rincón<br>
+<strong>Dirección:</strong> Blvd. Del Valle #2301, C.P. 36425, Purísima del Rincón, Guanajuato<br>
+<strong>Tel:</strong> (476) 744 7100</p>
+<hr>
+<h2 id="🌟-semana-tecnológica-2025">🌟 SEMANA TECNOLÓGICA 2025</h2>
+<div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="60"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="80"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="55"> </div>
+<p><strong>Tema:</strong> “Tecnología con propósito: una transición energética e inteligente hacia un futuro sostenible”</p>
+<p>Este taller forma parte de la Semana Tecnológica 2025 del ITSPR, evento que busca acercar a la comunidad tecnológica con innovaciones que impulsen el desarrollo sostenible en la industria.</p>
+<hr>
+<p><strong>¡Nos vemos el 15 de octubre! 🚀📊</strong></p>
+<hr>
+<div align="center"> <p><strong>Powered by:</strong></p> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R" height="40"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny" height="50"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit" height="35"> </div>
+</div>
+</body>
+
+</html>
