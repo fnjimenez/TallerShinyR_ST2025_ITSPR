@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quién Usa R Shiny? - Taller ITSPR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+        }
+        
+        .slide-header {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .slide-header img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            font-size: 1.2em;
+            opacity: 0.5;
+        }
+        
+        h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #667eea;
+        }
+        
+        .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 40px 0;
+        }
+        
+        .company-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .company-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .company-card.pharma { border-color: #10b981; }
+        .company-card.tech { border-color: #3b82f6; }
+        .company-card.finance { border-color: #f59e0b; }
+        .company-card.other { border-color: #8b5cf6; }
+        
+        .company-logo {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .company-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .company-industry {
+            font-size: 1.1em;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        
+        .company-use {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        
+        .stats-section {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: #0f172a;
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+        
+        .why-section {
+            max-width: 1000px;
+            text-align: left;
+            margin: 40px 0;
+        }
+        
+        .why-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .why-list li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #1e293b;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        
+        .why-list li strong {
+            color: #667eea;
+        }
+        
+        .honest-box {
+            background: #78350f20;
+            border: 3px solid #f59e0b;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 40px 0;
+        }
+        
+        .honest-box h3 {
+            color: #f59e0b;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .honest-box p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .sources {
+            margin-top: 40px;
+            padding: 30px;
+            background: #1e293b;
+            border-radius: 10px;
+            max-width: 1000px;
+        }
+        
+        .sources h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .sources a {
+            color: #3b82f6;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .sources a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- SLIDE 1: Portada -->
+    <div class="slide" id="slide1">
+        <div class="slide-header">
+            <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R Logo">
+            <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo">
+            <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo">
+        </div>
+        
+        <h1>🌍 ¿QUIÉN USA R SHINY?</h1>
+        <p class="subtitle">Empresas Reales, Casos Reales, Impacto Real</p>
+        
+        <div class="slide-number">1 / 4</div>
+    </div>
+    
+    <!-- SLIDE 2: Empresas que SÍ usan Shiny -->
+    <div class="slide" id="slide2" style="display: none;">
+        <div class="slide-header">
+            <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R Logo">
+            <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo">
+            <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo">
+        </div>
+        
+        <h2>Empresas que SÍ usan R Shiny</h2>
+        
+        <div class="companies-grid">
+            <div class="company-card pharma">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hoffmann-La_Roche_logo.svg/320px-Hoffmann-La_Roche_logo.svg.png" alt="Roche" style="height: 60px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">Roche</div>
+                <div class="company-industry">Farmacéutica</div>
+                <div class="company-use">
+                    Dashboards para análisis de ensayos clínicos, monitoreo de efectos secundarios y visualización de datos de investigación farmacológica.
+                </div>
+            </div>
+            
+            <div class="company-card pharma">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Novartis-Logo.svg/320px-Novartis-Logo.svg.png" alt="Novartis" style="height: 50px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">Novartis</div>
+                <div class="company-industry">Farmacéutica</div>
+                <div class="company-use">
+                    Plataformas internas para análisis estadístico de medicamentos, seguimiento de calidad y visualización de datos de fabricación.
+                </div>
+            </div>
+            
+            <div class="company-card pharma">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/GSK_logo_2014.svg/320px-GSK_logo_2014.svg.png" alt="GSK" style="height: 50px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">GSK</div>
+                <div class="company-industry">Farmacéutica</div>
+                <div class="company-use">
+                    Herramientas para análisis de datos genómicos, visualización de resultados de estudios clínicos y reportes regulatorios.
+                </div>
+            </div>
+            
+            <div class="company-card tech">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/320px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="Airbnb" style="height: 50px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">Airbnb</div>
+                <div class="company-industry">Tecnología</div>
+                <div class="company-use">
+                    Dashboards internos para análisis de datos de usuarios, optimización de precios y visualización de métricas de negocio.
+                </div>
+            </div>
+            
+            <div class="company-card finance">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/320px-Capital_One_logo.svg.png" alt="Capital One" style="height: 45px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">Capital One</div>
+                <div class="company-industry">Finanzas</div>
+                <div class="company-use">
+                    Herramientas de análisis de riesgo crediticio, detección de fraude y visualización de portafolios de inversión.
+                </div>
+            </div>
+            
+            <div class="company-card other">
+                <img src="https://www.fredhutch.org/content/dam/public/global-elements/icons/fhcrc-logo-color.svg" alt="Fred Hutch" style="height: 55px; margin-bottom: 15px; filter: brightness(0) invert(1);">
+                <div class="company-name">Fred Hutchinson Cancer Center</div>
+                <div class="company-industry">Investigación Médica</div>
+                <div class="company-use">
+                    Plataformas para análisis de datos de investigación oncológica, visualización de estudios clínicos y reportes científicos.
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-number">2 / 4</div>
+    </div>
+    
+    <!-- SLIDE 3: Estadísticas -->
+    <div class="slide" id="slide3" style="display: none;">
+        <div class="slide-header">
+            <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R Logo">
+            <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo">
+            <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo">
+        </div>
+        
+        <h2>R Shiny en Números</h2>
+        
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Top 20 Pharma usan R</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-number">5M+</div>
+                    <div class="stat-label">Apps Shiny creadas</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Industrias diferentes</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-number">FDA</div>
+                    <div class="stat-label">Aprueba reportes en R</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="why-section">
+            <h2>¿Por qué Pharma sí y Automotriz no tanto?</h2>
+            
+            <ul class="why-list">
+                <li>
+                    <strong>📊 Pharma:</strong> Necesita análisis estadístico complejo, R es el estándar de la industria para bioestadística y ensayos clínicos. FDA acepta reportes en R.
+                </li>
+                
+                <li>
+                    <strong>🏭 Automotriz:</strong> Usa sistemas SCADA, PLCs y MES integrados. Datos en tiempo real desde sensores industriales. Stack tecnológico diferente (Python, C++, sistemas propietarios).
+                </li>
+                
+                <li>
+                    <strong>🔬 Investigación vs Producción:</strong> Pharma analiza datos después. Automotriz necesita control en tiempo real milisegundo a milisegundo.
+                </li>
+                
+                <li>
+                    <strong>✅ Excepciones:</strong> En automotriz SÍ se usa R/Shiny para análisis post-producción, predicción de mantenimiento y análisis de calidad (¡como en este taller!).
+                </li>
+            </ul>
+        </div>
+        
+        <div class="slide-number">3 / 4</div>
+    </div>
+    
+    <!-- SLIDE 4: Honestidad y Fuentes -->
+    <div class="slide" id="slide4" style="display: none;">
+        <div class="slide-header">
+            <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R Logo">
+            <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo">
+            <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo">
+        </div>
+        
+        <h2>Seamos Honestos y Transparentes</h2>
+        
+        <div class="honest-box">
+            <h3>⚠️ La Realidad del Mercado</h3>
+            <p>
+                <strong>R y Shiny son herramientas poderosas</strong>, pero no son la solución única para todos los problemas industriales.
+            </p>
+            <p>
+                En <strong>manufactura automotriz</strong>, los dashboards de producción en tiempo real suelen usar:
+                • Sistemas MES (Manufacturing Execution Systems)<br>
+                • SCADA con interfaces web<br>
+                • Python con frameworks como Dash o Streamlit<br>
+                • Soluciones propietarias integradas
+            </p>
+            <p>
+                <strong>¿Significa que no debes aprender R/Shiny?</strong> ¡NO! Las habilidades que aprendes aquí son transferibles a cualquier herramienta de visualización.
+            </p>
+        </div>
+        
+        <div class="sources">
+            <h3>📚 Fuentes Verificadas</h3>
+            <a href="https://www.r-consortium.org/" target="_blank">• R Consortium - Miembros corporativos</a>
+            <a href="https://shiny.posit.co/r/gallery/" target="_blank">• Posit Shiny Gallery - Casos de uso reales</a>
+            <a href="https://appsilon.com/shiny-in-production/" target="_blank">• Appsilon - Shiny en Producción</a>
+            <a href="https://roche.github.io/" target="_blank">• Roche - Repositorio público de herramientas R</a>
+            <a href="https://www.fda.gov/science-research/bioinformatics-tools/r-program" target="_blank">• FDA - Uso de R en regulatory submissions</a>
+        </div>
+        
+        <div class="slide-number">4 / 4</div>
+    </div>
+    
+    <!-- Navegación -->
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◀ Anterior</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente ▶</button>
+    </div>
+    
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+        
+        function showSlide(n) {
+            // Ocultar todos los slides
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById('slide' + i).style.display = 'none';
+            }
+            
+            // Mostrar el slide actual
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+            
+            document.getElementById('slide' + currentSlide).style.display = 'flex';
+            
+            // Actualizar botones
+            document.getElementById('prevBtn').disabled = (currentSlide === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+        
+        // Navegación con teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+        
+        // Inicializar
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
