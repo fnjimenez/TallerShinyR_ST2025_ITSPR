@@ -1,9 +1,95 @@
----
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02 - Manual del Participante</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
 
----
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#📘-manual-del-participante">📘 MANUAL DEL PARTICIPANTE</a>
+<ul>
+<li><a href="#taller-dashboards-shiny-express---kpis-de-manufactura">Taller: Dashboards Shiny Express - KPIs de Manufactura</a></li>
+<li><a href="#📋-índice">📋 ÍNDICE</a></li>
+</ul>
+</li>
+<li><a href="#preparación-pre-taller">PREPARACIÓN PRE-TALLER</a>
+<ul>
+<li><a href="#✅-requisitos-previos">✅ Requisitos Previos</a></li>
+<li><a href="#🚀-crear-cuenta-en-posit.cloud">🚀 CREAR CUENTA EN POSIT.CLOUD</a></li>
+<li><a href="#📁-estructura-de-archivos-del-taller">📁 ESTRUCTURA DE ARCHIVOS DEL TALLER</a></li>
+</ul>
+</li>
+<li><a href="#módulo-1-configuración">MÓDULO 1: CONFIGURACIÓN</a>
+<ul>
+<li><a href="#⏰-horario-0800-0830-30-minutos">⏰ Horario: 08:00-08:30 (30 minutos)</a></li>
+<li><a href="#🔧-configurar-proyecto-en-posit.cloud">🔧 Configurar Proyecto en Posit.Cloud</a></li>
+</ul>
+</li>
+<li><a href="#módulo-2-fundamentos">MÓDULO 2: FUNDAMENTOS</a>
+<ul>
+<li><a href="#⏰-horario-0830-1000-90-minutos">⏰ Horario: 08:30-10:00 (90 minutos)</a></li>
+<li><a href="#📝-ejercicio-1-primera-app-interactiva">📝 EJERCICIO 1: Primera App Interactiva</a></li>
+<li><a href="#🎨-ejercicio-2-dashboard-de-calidad">🎨 EJERCICIO 2: Dashboard de Calidad</a></li>
+</ul>
+</li>
+<li><a href="#☕-receso">☕ RECESO</a>
+<ul>
+<li><a href="#⏰-horario-1000-1100-60-minutos">⏰ Horario: 10:00-11:00 (60 minutos)</a></li>
+</ul>
+</li>
+<li><a href="#módulo-3-kpis">MÓDULO 3: KPIS</a>
+<ul>
+<li><a href="#⏰-horario-1100-1145-45-minutos">⏰ Horario: 11:00-11:45 (45 minutos)</a></li>
+<li><a href="#📊-ejercicio-3-calculadora-oee">📊 EJERCICIO 3: Calculadora OEE</a></li>
+</ul>
+</li>
+<li><a href="#módulo-4-dashboard-completo">MÓDULO 4: DASHBOARD COMPLETO</a>
+<ul>
+<li><a href="#⏰-horario-1145-1250-65-minutos">⏰ Horario: 11:45-12:50 (65 minutos)</a></li>
+<li><a href="#🎯-ejercicio-4-dashboard-integrador">🎯 EJERCICIO 4: Dashboard Integrador</a></li>
+</ul>
+</li>
+<li><a href="#módulo-5-publicación-y-cierre">MÓDULO 5: PUBLICACIÓN Y CIERRE</a>
+<ul>
+<li><a href="#⏰-horario-1250-1300-10-minutos">⏰ Horario: 12:50-13:00 (10 minutos)</a></li>
+<li><a href="#🚀-publicar-en-shinyapps.io">🚀 Publicar en shinyapps.io</a></li>
+<li><a href="#🔧-solución-de-problemas-en-publicación">🔧 Solución de Problemas en Publicación</a></li>
+<li><a href="#💡-límites-del-plan-gratuito">💡 Límites del Plan Gratuito</a></li>
+<li><a href="#📊-monitoreo-de-tu-app">📊 Monitoreo de tu App</a></li>
+</ul>
+</li>
+<li><a href="#recursos-y-referencias">RECURSOS Y REFERENCIAS</a>
+<ul>
+<li><a href="#📚-documentación-oficial">📚 Documentación Oficial</a></li>
+<li><a href="#🎓-cursos-recomendados">🎓 Cursos Recomendados</a></li>
+<li><a href="#🛠️-herramientas-útiles">🛠️ Herramientas Útiles</a></li>
+</ul>
+</li>
+<li><a href="#solución-de-problemas">SOLUCIÓN DE PROBLEMAS</a>
+<ul>
+<li><a href="#❓-problemas-comunes-y-soluciones">❓ Problemas Comunes y Soluciones</a></li>
+<li><a href="#💡-tips-y-mejores-prácticas">💡 Tips y Mejores Prácticas</a></li>
+<li><a href="#📝-notas-del-taller">📝 NOTAS DEL TALLER</a></li>
+<li><a href="#✅-checklist-de-finalización">✅ CHECKLIST DE FINALIZACIÓN</a></li>
+<li><a href="#🎓-certificado-de-participación">🎓 CERTIFICADO DE PARTICIPACIÓN</a></li>
+<li><a href="#📞-contacto-post-taller">📞 CONTACTO POST-TALLER</a></li>
+<li><a href="#🌟-próximos-pasos">🌟 PRÓXIMOS PASOS</a></li>
+</ul>
+</li>
+</ul>
 
-<h1 id="📘-manual-del-participante">📘 MANUAL DEL PARTICIPANTE</h1>
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="📘-manual-del-participante">📘 MANUAL DEL PARTICIPANTE</h1>
 <h2 id="taller-dashboards-shiny-express---kpis-de-manufactura">Taller: Dashboards Shiny Express - KPIs de Manufactura</h2>
 <div align="center"> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R Logo" height="100"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo" height="120"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo" height="90"> </div>
 <p><strong>Instituto Tecnológico Superior de Purísima del Rincón</strong><br>
@@ -930,3 +1016,8 @@ observeEvent<span class="token punctuation">(</span>input<span class="token oper
 <em>Octubre 2025</em></p>
 <div align="center"> <p><strong>Powered by:</strong></p> <img src="https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png" alt="R" height="35"> <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny" height="25"> <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit" height="25"> </div>
 
+    </div>
+  </div>
+</body>
+
+</html>
