@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Datasets CSV - Taller Shiny</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .logos img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .generator-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .generator-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .generator-card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .controls label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .controls input {
+            padding: 8px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 120px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .preview {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+        
+        .stat-box .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .stat-box .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .success-message {
+            background: #10b98120;
+            color: #059669;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 5px solid #10b981;
+            display: none;
+        }
+        
+        .info-box {
+            background: #3b82f620;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box h4 {
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Generador de Datasets CSV</h1>
+            <p>Crea datos simulados para el Taller Shiny Express</p>
+            <div class="logos">
+                <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R Logo">
+                <img src="https://shiny.posit.co/images/shiny-solo.png" alt="Shiny Logo">
+                <img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" alt="Posit Logo">
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="info-box">
+                <h4>ℹ️ ¿Cómo usar este generador?</h4>
+                <ul>
+                    <li>Ajusta el número de registros que necesitas para cada dataset</li>
+                    <li>Haz clic en "Generar" para crear los datos</li>
+                    <li>Previsualiza los datos generados</li>
+                    <li>Descarga los archivos CSV para usar en tus ejercicios de Shiny</li>
+                </ul>
+            </div>
+            
+            <!-- Dataset 1: Línea de Producción -->
+            <div class="generator-card">
+                <h3>1️⃣ Línea de Producción</h3>
+                <p>Registros de producción por hora con información de disponibilidad, performance y calidad para calcular OEE.</p>
+                
+                <div class="controls">
+                    <label>Número de registros:</label>
+                    <input type="number" id="numProduccion" value="1000" min="100" max="10000">
+                    <button class="btn" onclick="generateProduccion()">🔄 Generar</button>
+                </div>
+                
+                <div class="stats" id="statsProduccion" style="display: none;">
+                    <div class="stat-box">
+                        <div class="label">Registros</div>
+                        <div class="value" id="totalProduccion">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">OEE Promedio</div>
+                        <div class="value" id="avgOEE">0%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">Tamaño</div>
+                        <div class="value" id="sizeProduccion">0 KB</div>
+                    </div>
+                </div>
+                
+                <div class="preview" id="previewProduccion" style="display: none;"></div>
+                
+                <div class="action-buttons" id="actionsProduccion" style="display: none;">
+                    <button class="btn btn-success" onclick="downloadCSV('produccion')">⬇️ Descargar CSV</button>
+                    <button class="btn" onclick="copyToClipboard('produccion')">📋 Copiar Datos</button>
+                </div>
+                
+                <div class="success-message" id="successProduccion">
+                    ✓ Dataset generado exitosamente
+                </div>
+            </div>
+            
+            <!-- Dataset 2: Mantenimiento -->
+            <div class="generator-card">
+                <h3>2️⃣ Registro de Mantenimiento</h3>
+                <p>Eventos de mantenimiento correctivo y preventivo para calcular MTBF y MTTR.</p>
+                
+                <div class="controls">
+                    <label>Número de registros:</label>
+                    <input type="number" id="numMantenimiento" value="500" min="50" max="5000">
+                    <button class="btn" onclick="generateMantenimiento()">🔄 Generar</button>
+                </div>
+                
+                <div class="stats" id="statsMantenimiento" style="display: none;">
+                    <div class="stat-box">
+                        <div class="label">Registros</div>
+                        <div class="value" id="totalMantenimiento">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">MTBF Promedio</div>
+                        <div class="value" id="avgMTBF">0h</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">MTTR Promedio</div>
+                        <div class="value" id="avgMTTR">0h</div>
+                    </div>
+                </div>
+                
+                <div class="preview" id="previewMantenimiento" style="display: none;"></div>
+                
+                <div class="action-buttons" id="actionsMantenimiento" style="display: none;">
+                    <button class="btn btn-success" onclick="downloadCSV('mantenimiento')">⬇️ Descargar CSV</button>
+                    <button class="btn" onclick="copyToClipboard('mantenimiento')">📋 Copiar Datos</button>
+                </div>
+                
+                <div class="success-message" id="successMantenimiento">
+                    ✓ Dataset generado exitosamente
+                </div>
+            </div>
+            
+            <!-- Dataset 3: Control de Calidad -->
+            <div class="generator-card">
+                <h3>3️⃣ Control de Calidad</h3>
+                <p>Inspecciones de calidad y defectos para calcular FPY (First Pass Yield).</p>
+                
+                <div class="controls">
+                    <label>Número de registros:</label>
+                    <input type="number" id="numCalidad" value="2000" min="100" max="10000">
+                    <button class="btn" onclick="generateCalidad()">🔄 Generar</button>
+                </div>
+                
+                <div class="stats" id="statsCalidad" style="display: none;">
+                    <div class="stat-box">
+                        <div class="label">Registros</div>
+                        <div class="value" id="totalCalidad">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">FPY Promedio</div>
+                        <div class="value" id="avgFPY">0%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">Defectos</div>
+                        <div class="value" id="totalDefectos">0</div>
+                    </div>
+                </div>
+                
+                <div class="preview" id="previewCalidad" style="display: none;"></div>
+                
+                <div class="action-buttons" id="actionsCalidad" style="display: none;">
+                    <button class="btn btn-success" onclick="downloadCSV('calidad')">⬇️ Descargar CSV</button>
+                    <button class="btn" onclick="copyToClipboard('calidad')">📋 Copiar Datos</button>
+                </div>
+                
+                <div class="success-message" id="successCalidad">
+                    ✓ Dataset generado exitosamente
+                </div>
+            </div>
+            
+            <!-- Botón para generar todos -->
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" style="font-size: 1.3em; padding: 15px 40px;" onclick="generateAll()">
+                    🚀 Generar Todos los Datasets
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Almacenamiento de datos generados
+        let datasetsGenerados = {
+            produccion: null,
+            mantenimiento: null,
+            calidad: null
+        };
+        
+        // Función para generar fechas aleatorias
+        function randomDate(start, end) {
+            return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        }
+        
+        // Función para formatear fecha
+        function formatDate(date) {
+            return date.toISOString().slice(0, 19).replace('T', ' ');
+        }
+        
+        // Dataset 1: Línea de Producción
+        function generateProduccion() {
+            const num = parseInt(document.getElementById('numProduccion').value);
+            const data = [];
+            const header = 'fecha_hora,turno,operador,unidades_producidas,unidades_objetivo,tiempo_operacion,tiempo_disponible,unidades_calidad_ok,defectos,paros_minutos,OEE';
+            
+            data.push(header);
+            
+            const startDate = new Date('2024-01-01');
+            const endDate = new Date('2024-12-31');
+            const turnos = ['Matutino', 'Vespertino', 'Nocturno'];
+            const operadores = ['Juan García', 'María López', 'Carlos Pérez', 'Ana Martínez', 'Luis Rodríguez'];
+            
+            let totalOEE = 0;
+            
+            for (let i = 0; i < num; i++) {
+                const fecha = formatDate(randomDate(startDate, endDate));
+                const turno = turnos[Math.floor(Math.random() * turnos.length)];
+                const operador = operadores[Math.floor(Math.random() * operadores.length)];
+                const unidades_objetivo = 500;
+                const unidades_producidas = Math.floor(Math.random() * 100 + 420);
+                const tiempo_disponible = 480;
+                const tiempo_operacion = Math.floor(Math.random() * 60 + 420);
+                const tasa_calidad = 0.92 + Math.random() * 0.07;
+                const unidades_calidad_ok = Math.floor(unidades_producidas * tasa_calidad);
+                const defectos = unidades_producidas - unidades_calidad_ok;
+                const paros_minutos = tiempo_disponible - tiempo_operacion;
+                
+                const disponibilidad = tiempo_operacion / tiempo_disponible;
+                const rendimiento = unidades_producidas / unidades_objetivo;
+                const calidad = unidades_calidad_ok / unidades_producidas;
+                const OEE = (disponibilidad * rendimiento * calidad * 100).toFixed(2);
+                
+                totalOEE += parseFloat(OEE);
+                
+                data.push(`${fecha},${turno},${operador},${unidades_producidas},${unidades_objetivo},${tiempo_operacion},${tiempo_disponible},${unidades_calidad_ok},${defectos},${paros_minutos},${OEE}`);
+            }
+            
+            const csvContent = data.join('\n');
+            datasetsGenerados.produccion = csvContent;
+            
+            // Actualizar stats
+            document.getElementById('totalProduccion').textContent = num.toLocaleString();
+            document.getElementById('avgOEE').textContent = (totalOEE / num).toFixed(1) + '%';
+            document.getElementById('sizeProduccion').textContent = (csvContent.length / 1024).toFixed(1) + ' KB';
+            
+            // Mostrar preview
+            const preview = data.slice(0, 6).join('\n');
+            document.getElementById('previewProduccion').textContent = preview + '\n... (' + num + ' registros en total)';
+            
+            // Mostrar elementos
+            document.getElementById('statsProduccion').style.display = 'grid';
+            document.getElementById('previewProduccion').style.display = 'block';
+            document.getElementById('actionsProduccion').style.display = 'flex';
+            document.getElementById('successProduccion').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('successProduccion').style.display = 'none';
+            }, 3000);
+        }
+        
+        // Dataset 2: Mantenimiento
+        function generateMantenimiento() {
+            const num = parseInt(document.getElementById('numMantenimiento').value);
+            const data = [];
+            const header = 'fecha_inicio,fecha_fin,equipo,tipo_mantenimiento,tipo_falla,tecnico,tiempo_reparacion_horas,tiempo_entre_fallas_horas,costo_reparacion,repuestos_utilizados';
+            
+            data.push(header);
+            
+            const startDate = new Date('2024-01-01');
+            const endDate = new Date('2024-12-31');
+            const equipos = ['Prensa-01', 'Torno-02', 'Fresadora-03', 'Ensambladora-04', 'Empacadora-05'];
+            const tipos = ['Correctivo', 'Preventivo'];
+            const fallas = ['Mecánica', 'Eléctrica', 'Neumática', 'Hidráulica', 'Software'];
+            const tecnicos = ['Roberto Díaz', 'Sandra Morales', 'Miguel Ángel', 'Patricia Ruiz'];
+            const repuestos = ['Rodamiento', 'Motor', 'Válvula', 'Sensor', 'Cilindro', 'Correa', 'N/A'];
+            
+            let totalMTBF = 0;
+            let totalMTTR = 0;
+            
+            for (let i = 0; i < num; i++) {
+                const fecha_inicio = randomDate(startDate, endDate);
+                const tiempo_reparacion = (Math.random() * 8 + 0.5).toFixed(2);
+                const fecha_fin = new Date(fecha_inicio.getTime() + tiempo_reparacion * 3600000);
+                
+                const equipo = equipos[Math.floor(Math.random() * equipos.length)];
+                const tipo = tipos[Math.floor(Math.random() * tipos.length)];
+                const falla = fallas[Math.floor(Math.random() * fallas.length)];
+                const tecnico = tecnicos[Math.floor(Math.random() * tecnicos.length)];
+                const tiempo_entre_fallas = (Math.random() * 200 + 50).toFixed(2);
+                const costo = Math.floor(Math.random() * 5000 + 500);
+                const repuesto = repuestos[Math.floor(Math.random() * repuestos.length)];
+                
+                totalMTBF += parseFloat(tiempo_entre_fallas);
+                totalMTTR += parseFloat(tiempo_reparacion);
+                
+                data.push(`${formatDate(fecha_inicio)},${formatDate(fecha_fin)},${equipo},${tipo},${falla},${tecnico},${tiempo_reparacion},${tiempo_entre_fallas},${costo},${repuesto}`);
+            }
+            
+            const csvContent = data.join('\n');
+            datasetsGenerados.mantenimiento = csvContent;
+            
+            // Actualizar stats
+            document.getElementById('totalMantenimiento').textContent = num.toLocaleString();
+            document.getElementById('avgMTBF').textContent = (totalMTBF / num).toFixed(1) + 'h';
+            document.getElementById('avgMTTR').textContent = (totalMTTR / num).toFixed(1) + 'h';
+            
+            // Mostrar preview
+            const preview = data.slice(0, 6).join('\n');
+            document.getElementById('previewMantenimiento').textContent = preview + '\n... (' + num + ' registros en total)';
+            
+            // Mostrar elementos
+            document.getElementById('statsMantenimiento').style.display = 'grid';
+            document.getElementById('previewMantenimiento').style.display = 'block';
+            document.getElementById('actionsMantenimiento').style.display = 'flex';
+            document.getElementById('successMantenimiento').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('successMantenimiento').style.display = 'none';
+            }, 3000);
+        }
+        
+        // Dataset 3: Control de Calidad
+        function generateCalidad() {
+            const num = parseInt(document.getElementById('numCalidad').value);
+            const data = [];
+            const header = 'fecha_hora,lote,inspector,unidades_inspeccionadas,unidades_aprobadas,unidades_rechazadas,tipo_defecto,severidad,accion_correctiva,FPY';
+            
+            data.push(header);
+            
+            const startDate = new Date('2024-01-01');
+            const endDate = new Date('2024-12-31');
+            const inspectores = ['Laura Gómez', 'Pedro Sánchez', 'Diana Torres', 'José Ramírez'];
+            const defectos = ['Dimensional', 'Visual', 'Funcional', 'Ninguno'];
+            const severidades = ['Crítico', 'Mayor', 'Menor', 'N/A'];
+            const acciones = ['Retrabajo', 'Scrap', 'Ninguna', 'Revisión 100%'];
+            
+            let totalFPY = 0;
+            let totalDefectos = 0;
+            
+            for (let i = 0; i < num; i++) {
+                const fecha = formatDate(randomDate(startDate, endDate));
+                const lote = 'LT-' + String(Math.floor(Math.random() * 9000 + 1000));
+                const inspector = inspectores[Math.floor(Math.random() * inspectores.length)];
+                const unidades_inspeccionadas = Math.floor(Math.random() * 50 + 50);
+                const tasa_aprobacion = 0.90 + Math.random() * 0.09;
+                const unidades_aprobadas = Math.floor(unidades_inspeccionadas * tasa_aprobacion);
+                const unidades_rechazadas = unidades_inspeccionadas - unidades_aprobadas;
+                
+                const tipo_defecto = unidades_rechazadas > 0 ? 
+                    defectos[Math.floor(Math.random() * (defectos.length - 1))] : 
+                    'Ninguno';
+                const severidad = tipo_defecto === 'Ninguno' ? 
+                    'N/A' : 
+                    severidades[Math.floor(Math.random() * (severidades.length - 1))];
+                const accion = tipo_defecto === 'Ninguno' ? 
+                    'Ninguna' : 
+                    acciones[Math.floor(Math.random() * (acciones.length - 1))];
+                
+                const FPY = ((unidades_aprobadas / unidades_inspeccionadas) * 100).toFixed(2);
+                
+                totalFPY += parseFloat(FPY);
+                totalDefectos += unidades_rechazadas;
+                
+                data.push(`${fecha},${lote},${inspector},${unidades_inspeccionadas},${unidades_aprobadas},${unidades_rechazadas},${tipo_defecto},${severidad},${accion},${FPY}`);
+            }
+            
+            const csvContent = data.join('\n');
+            datasetsGenerados.calidad = csvContent;
+            
+            // Actualizar stats
+            document.getElementById('totalCalidad').textContent = num.toLocaleString();
+            document.getElementById('avgFPY').textContent = (totalFPY / num).toFixed(1) + '%';
+            document.getElementById('totalDefectos').textContent = totalDefectos.toLocaleString();
+            
+            // Mostrar preview
+            const preview = data.slice(0, 6).join('\n');
+            document.getElementById('previewCalidad').textContent = preview + '\n... (' + num + ' registros en total)';
+            
+            // Mostrar elementos
+            document.getElementById('statsCalidad').style.display = 'grid';
+            document.getElementById('previewCalidad').style.display = 'block';
+            document.getElementById('actionsCalidad').style.display = 'flex';
+            document.getElementById('successCalidad').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('successCalidad').style.display = 'none';
+            }, 3000);
+        }
+        
+        // Descargar CSV
+        function downloadCSV(tipo) {
+            let filename, content;
+            
+            if (tipo === 'produccion') {
+                filename = 'linea_produccion_a.csv';
+                content = datasetsGenerados.produccion;
+            } else if (tipo === 'mantenimiento') {
+                filename = 'registro_mantenimiento.csv';
+                content = datasetsGenerados.mantenimiento;
+            } else if (tipo === 'calidad') {
+                filename = 'control_calidad.csv';
+                content = datasetsGenerados.calidad;
+            }
+            
+            if (!content) {
+                alert('Por favor genera primero el dataset');
+                return;
+            }
+            
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Copiar al portapapeles
+        function copyToClipboard(tipo) {
+            let content;
+            
+            if (tipo === 'produccion') content = datasetsGenerados.produccion;
+            else if (tipo === 'mantenimiento') content = datasetsGenerados.mantenimiento;
+            else if (tipo === 'calidad') content = datasetsGenerados.calidad;
+            
+            if (!content) {
+                alert('Por favor genera primero el dataset');
+                return;
+            }
+            
+            navigator.clipboard.writeText(content).then(() => {
+                alert('✓ Datos copiados al portapapeles');
+            });
+        }
+        
+        // Generar todos
+        function generateAll() {
+            generateProduccion();
+            setTimeout(() => generateMantenimiento(), 500);
+            setTimeout(() => generateCalidad(), 1000);
+        }
+    </script>
+</body>
+</html>
