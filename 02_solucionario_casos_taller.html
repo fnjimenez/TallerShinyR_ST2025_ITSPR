@@ -1,0 +1,1298 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_solucionario_casos_taller.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="📚-solucionario-y-análisis-de-casos">📚 SOLUCIONARIO Y ANÁLISIS DE CASOS</h1>
+<h2 id="✅-versión-actualizada---casos-pharma-bebidas-automl">✅ VERSIÓN ACTUALIZADA - Casos: Pharma, Bebidas, Auto+ML</h2>
+<h2 id="taller-dashboards-shiny-express---kpis-de-manufactura">Taller: Dashboards Shiny Express - KPIs de Manufactura</h2>
+<p><strong>Instituto Tecnológico Superior de Purísima del Rincón</strong><br>
+<strong>Semana Tecnológica 2025</strong></p>
+<hr>
+<h2 id="📋-índice">📋 ÍNDICE</h2>
+<ol>
+<li><a href="#soluciones-ejercicios">Soluciones Detalladas de Ejercicios</a></li>
+<li><a href="#casos-de-estudio">Casos de Estudio Analizados</a></li>
+<li><a href="#interpretaci%C3%B3n-resultados">Interpretación de Resultados</a></li>
+<li><a href="#escenarios-manufactura">Escenarios de Manufactura</a></li>
+<li><a href="#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+</ol>
+<hr>
+<h1 id="soluciones-ejercicios">SOLUCIONES EJERCICIOS</h1>
+<h2 id="📝-ejercicio-1-primera-app-interactiva">📝 EJERCICIO 1: Primera App Interactiva</h2>
+<h3 id="objetivo">Objetivo:</h3>
+<p>Crear una aplicación básica que calcule el porcentaje de meta alcanzada.</p>
+<h3 id="solución-paso-a-paso">Solución Paso a Paso:</h3>
+<h4 id="estructura-de-la-aplicación">1. <strong>Estructura de la Aplicación</strong></h4>
+<pre class=" language-r"><code class="prism  language-r">library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>bslib<span class="token punctuation">)</span>
+
+ui <span class="token operator">&lt;-</span> page_sidebar<span class="token punctuation">(</span><span class="token ellipsis">...</span><span class="token punctuation">)</span>
+server <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">,</span> session<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token ellipsis">...</span><span class="token punctuation">}</span>
+shinyApp<span class="token punctuation">(</span>ui<span class="token punctuation">,</span> server<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><code>library(shiny)</code> - Carga el framework principal</li>
+<li><code>library(bslib)</code> - Carga herramientas de diseño moderno</li>
+<li><code>ui</code> - Define la interfaz visual</li>
+<li><code>server</code> - Define la lógica y cálculos</li>
+<li><code>shinyApp()</code> - Conecta UI y server</li>
+</ul>
+<h4 id="componentes-ui">2. <strong>Componentes UI</strong></h4>
+<pre class=" language-r"><code class="prism  language-r">sidebar <span class="token operator">=</span> sidebar<span class="token punctuation">(</span>
+  sliderInput<span class="token punctuation">(</span><span class="token string">"produccion"</span><span class="token punctuation">,</span> <span class="token string">"Unidades Producidas:"</span><span class="token punctuation">,</span> 
+              min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><code>sliderInput()</code> - Crea control deslizante</li>
+<li><code>"produccion"</code> - ID único del input (para usarlo en server)</li>
+<li><code>min/max</code> - Rango permitido</li>
+<li><code>value = 500</code> - Valor inicial por defecto</li>
+</ul>
+<h4 id="lógica-reactiva">3. <strong>Lógica Reactiva</strong></h4>
+<pre class=" language-r"><code class="prism  language-r">output<span class="token operator">$</span>porcentaje <span class="token operator">&lt;-</span> renderText<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  pct <span class="token operator">&lt;-</span> round<span class="token punctuation">(</span><span class="token punctuation">(</span>input<span class="token operator">$</span>produccion <span class="token operator">/</span> input<span class="token operator">$</span>meta<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  paste0<span class="token punctuation">(</span>pct<span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><code>renderText()</code> - Función que genera texto dinámico</li>
+<li><code>input$produccion</code> - Lee el valor del slider</li>
+<li><code>round(..., 1)</code> - Redondea a 1 decimal</li>
+<li><code>paste0()</code> - Concatena texto con el símbolo %</li>
+</ul>
+<h3 id="resultados-esperados">Resultados Esperados:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Producción</th>
+<th>Meta</th>
+<th>Resultado</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500</td>
+<td>800</td>
+<td>62.5%</td>
+<td>Bajo meta</td>
+</tr>
+<tr>
+<td>800</td>
+<td>800</td>
+<td>100%</td>
+<td>Meta cumplida ✅</td>
+</tr>
+<tr>
+<td>900</td>
+<td>800</td>
+<td>112.5%</td>
+<td>Sobre meta</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="📊-ejercicio-2-dashboard-de-control-de-calidad">📊 EJERCICIO 2: Dashboard de Control de Calidad</h2>
+<h3 id="objetivo-1">Objetivo:</h3>
+<p>Calcular First Pass Yield (FPY) y visualizar resultados de inspección.</p>
+<h3 id="solución-detallada">Solución Detallada:</h3>
+<h4 id="cálculo-de-fpy">1. <strong>Cálculo de FPY</strong></h4>
+<p><strong>Fórmula:</strong></p>
+<pre><code>FPY = (Unidades Buenas / Unidades Inspeccionadas) × 100
+</code></pre>
+<p><strong>Implementación:</strong></p>
+<pre class=" language-r"><code class="prism  language-r">fpy_valor <span class="token operator">&lt;-</span> reactive<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  buenas <span class="token operator">&lt;-</span> input<span class="token operator">$</span>inspeccionadas <span class="token operator">-</span> input<span class="token operator">$</span>defectuosas
+  <span class="token punctuation">(</span>buenas <span class="token operator">/</span> input<span class="token operator">$</span>inspeccionadas<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Ejemplo de Cálculo:</strong></p>
+<pre><code>Inspeccionadas: 100
+Defectuosas: 5
+Buenas: 100 - 5 = 95
+
+FPY = (95 / 100) × 100 = 95%
+</code></pre>
+<h4 id="gráfico-de-barras">2. <strong>Gráfico de Barras</strong></h4>
+<pre class=" language-r"><code class="prism  language-r">df <span class="token operator">&lt;-</span> data.frame<span class="token punctuation">(</span>
+  categoria <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Buenas"</span><span class="token punctuation">,</span> <span class="token string">"Defectuosas"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  cantidad <span class="token operator">=</span> c<span class="token punctuation">(</span>input<span class="token operator">$</span>inspeccionadas <span class="token operator">-</span> input<span class="token operator">$</span>defectuosas<span class="token punctuation">,</span> 
+               input<span class="token operator">$</span>defectuosas<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+ggplot<span class="token punctuation">(</span>df<span class="token punctuation">,</span> aes<span class="token punctuation">(</span>x <span class="token operator">=</span> categoria<span class="token punctuation">,</span> y <span class="token operator">=</span> cantidad<span class="token punctuation">,</span> fill <span class="token operator">=</span> categoria<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+  geom_bar<span class="token punctuation">(</span>stat <span class="token operator">=</span> <span class="token string">"identity"</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+  scale_fill_manual<span class="token punctuation">(</span>values <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">"Buenas"</span> <span class="token operator">=</span> <span class="token string">"#28a745"</span><span class="token punctuation">,</span> 
+                               <span class="token string">"Defectuosas"</span> <span class="token operator">=</span> <span class="token string">"#dc3545"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li>Verde (#28a745) para piezas buenas ✅</li>
+<li>Rojo (#dc3545) para defectuosas ❌</li>
+<li>Código de colores universal en manufactura</li>
+</ul>
+<h4 id="interpretación-de-resultados">3. <strong>Interpretación de Resultados</strong></h4>
+
+<table>
+<thead>
+<tr>
+<th>FPY</th>
+<th>Clasificación</th>
+<th>Acción Requerida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≥ 99%</td>
+<td>Excelente</td>
+<td>Mantener proceso</td>
+</tr>
+<tr>
+<td>95-98%</td>
+<td>Bueno</td>
+<td>Monitorear</td>
+</tr>
+<tr>
+<td>90-94%</td>
+<td>Regular</td>
+<td>Investigar causas</td>
+</tr>
+<tr>
+<td>&lt; 90%</td>
+<td>Deficiente</td>
+<td>Acción inmediata</td>
+</tr>
+</tbody>
+</table><h3 id="caso-de-ejemplo">Caso de Ejemplo:</h3>
+<p><strong>Datos del Turno Matutino:</strong></p>
+<ul>
+<li>Inspeccionadas: 450 piezas</li>
+<li>Defectuosas: 18 piezas</li>
+<li>FPY: 96%</li>
+</ul>
+<p><strong>Análisis:</strong></p>
+<pre><code>FPY = (432 / 450) × 100 = 96%
+
+Clasificación: BUENO ✅
+Acción: Continuar monitoreo
+Oportunidad: Reducir defectos de 18 a 9 
+            llevaría FPY a 98%
+</code></pre>
+<hr>
+<h2 id="🎯-ejercicio-3-calculadora-oee">🎯 EJERCICIO 3: Calculadora OEE</h2>
+<h3 id="objetivo-2">Objetivo:</h3>
+<p>Implementar el cálculo completo de OEE con sus tres componentes.</p>
+<h3 id="solución-completa">Solución Completa:</h3>
+<h4 id="componente-1-disponibilidad">1. <strong>Componente 1: DISPONIBILIDAD</strong></h4>
+<p><strong>Fórmula:</strong></p>
+<pre><code>Disponibilidad = (Tiempo Planeado - Downtime) / Tiempo Planeado
+</code></pre>
+<p><strong>Ejemplo:</strong></p>
+<pre><code>Tiempo Planeado: 480 min (8 horas)
+Downtime: 45 min
+Tiempo Operativo: 435 min
+
+Disponibilidad = 435 / 480 = 0.906 = 90.6%
+</code></pre>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li>90.6% significa que el equipo estuvo productivo 90.6% del tiempo</li>
+<li>9.4% del tiempo se perdió por paros</li>
+<li>Meta típica: &gt; 90%</li>
+</ul>
+<h4 id="componente-2-rendimiento">2. <strong>Componente 2: RENDIMIENTO</strong></h4>
+<p><strong>Fórmula:</strong></p>
+<pre><code>Rendimiento = (Unidades Producidas × Tiempo Ciclo Ideal) / Tiempo Operativo
+</code></pre>
+<p><strong>Ejemplo:</strong></p>
+<pre><code>Unidades Producidas: 450
+Ciclo Ideal: 1 min/unidad
+Tiempo Operativo: 435 min
+
+Rendimiento = (450 × 1) / 435 = 1.034 = 103.4%
+</code></pre>
+<p><strong>⚠️ IMPORTANTE:</strong></p>
+<ul>
+<li>Si resultado &gt; 100%, ajustar a 100%</li>
+<li>
+<blockquote>
+<p>100% indica que el ciclo “ideal” no es realista</p>
+</blockquote>
+</li>
+<li>Revisar y ajustar estándar de tiempo</li>
+</ul>
+<p><strong>Corrección:</strong></p>
+<pre><code>Rendimiento = min(103.4%, 100%) = 100%
+</code></pre>
+<h4 id="componente-3-calidad">3. <strong>Componente 3: CALIDAD</strong></h4>
+<p><strong>Fórmula:</strong></p>
+<pre><code>Calidad = Unidades Buenas / Unidades Producidas
+</code></pre>
+<p><strong>Ejemplo:</strong></p>
+<pre><code>Producidas: 450
+Defectuosas: 20
+Buenas: 430
+
+Calidad = 430 / 450 = 0.956 = 95.6%
+</code></pre>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li>95.6% de piezas salieron bien a la primera</li>
+<li>4.4% requirieron retrabajo o fueron desechadas</li>
+<li>Meta World Class: &gt; 99%</li>
+</ul>
+<h4 id="oee-total">4. <strong>OEE TOTAL</strong></h4>
+<p><strong>Fórmula:</strong></p>
+<pre><code>OEE = Disponibilidad × Rendimiento × Calidad
+</code></pre>
+<p><strong>Cálculo Final:</strong></p>
+<pre><code>OEE = 90.6% × 100% × 95.6% = 86.6%
+
+Clasificación: WORLD CLASS ✅
+</code></pre>
+<h3 id="tabla-de-clasificación-oee">Tabla de Clasificación OEE:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Rango OEE</th>
+<th>Clasificación</th>
+<th>Color</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≥ 85%</td>
+<td>World Class</td>
+<td>🟢 Verde</td>
+<td>Manufactura de clase mundial</td>
+</tr>
+<tr>
+<td>65-84%</td>
+<td>Bueno</td>
+<td>🟡 Amarillo</td>
+<td>Competitivo, con oportunidades</td>
+</tr>
+<tr>
+<td>40-64%</td>
+<td>Regular</td>
+<td>🟠 Naranja</td>
+<td>Requiere mejoras significativas</td>
+</tr>
+<tr>
+<td>&lt; 40%</td>
+<td>Deficiente</td>
+<td>🔴 Rojo</td>
+<td>Problemas críticos</td>
+</tr>
+</tbody>
+</table><h3 id="análisis-de-pérdidas">Análisis de Pérdidas:</h3>
+<p><strong>Pérdidas por Componente:</strong></p>
+<pre><code>Pérdida Total = 100% - 86.6% = 13.4%
+
+Desglose:
+- Pérdida por Disponibilidad: 9.4%
+- Pérdida por Rendimiento: 0% (ya al 100%)
+- Pérdida por Calidad: 4.4%
+
+Conclusión: Atacar primero la Disponibilidad (9.4%)
+           para mayor impacto en OEE
+</code></pre>
+<hr>
+<h2 id="📈-ejercicio-4-dashboard-completo">📈 EJERCICIO 4: Dashboard Completo</h2>
+<h3 id="objetivo-3">Objetivo:</h3>
+<p>Integrar múltiples KPIs en un dashboard profesional.</p>
+<h3 id="componentes-del-dashboard">Componentes del Dashboard:</h3>
+<h4 id="kpis-principales">1. <strong>KPIs Principales</strong></h4>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># OEE</span>
+oee <span class="token operator">&lt;-</span> <span class="token punctuation">(</span>disponibilidad <span class="token operator">*</span> rendimiento <span class="token operator">*</span> calidad<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span>
+
+<span class="token comment"># MTBF (Mean Time Between Failures)</span>
+mtbf <span class="token operator">&lt;-</span> tiempo_total_operativo <span class="token operator">/</span> numero_fallas
+
+<span class="token comment"># MTTR (Mean Time To Repair)</span>
+mttr <span class="token operator">&lt;-</span> tiempo_total_reparacion <span class="token operator">/</span> numero_reparaciones
+
+<span class="token comment"># FPY</span>
+fpy <span class="token operator">&lt;-</span> <span class="token punctuation">(</span>unidades_buenas <span class="token operator">/</span> unidades_totales<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span>
+</code></pre>
+<h4 id="sistema-de-alertas">2. <strong>Sistema de Alertas</strong></h4>
+<pre class=" language-r"><code class="prism  language-r"><span class="token keyword">if</span> <span class="token punctuation">(</span>oee <span class="token operator">&lt;</span> <span class="token number">65</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alerta <span class="token operator">&lt;-</span> <span class="token string">"⚠️ OEE BAJO: Requiere atención inmediata"</span>
+  color <span class="token operator">&lt;-</span> <span class="token string">"danger"</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>oee <span class="token operator">&gt;=</span> <span class="token number">85</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alerta <span class="token operator">&lt;-</span> <span class="token string">"✅ EXCELENTE: World Class alcanzado"</span>
+  color <span class="token operator">&lt;-</span> <span class="token string">"success"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="diagrama-de-pareto">3. <strong>Diagrama de Pareto</strong></h4>
+<p><strong>Propósito:</strong> Identificar las principales causas de downtime</p>
+<p><strong>Interpretación de Ejemplo:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Causa</th>
+<th>Tiempo (min)</th>
+<th>% del Total</th>
+<th>% Acumulado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Falla Mecánica</td>
+<td>120</td>
+<td>41.4%</td>
+<td>41.4%</td>
+</tr>
+<tr>
+<td>Falta Material</td>
+<td>80</td>
+<td>27.6%</td>
+<td>69.0%</td>
+</tr>
+<tr>
+<td>Cambio Producto</td>
+<td>45</td>
+<td>15.5%</td>
+<td>84.5%</td>
+</tr>
+<tr>
+<td>Ajuste Calidad</td>
+<td>30</td>
+<td>10.3%</td>
+<td>94.8%</td>
+</tr>
+<tr>
+<td>Otros</td>
+<td>15</td>
+<td>5.2%</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table><p><strong>Análisis:</strong></p>
+<pre><code>✅ Las primeras 2 causas representan el 69% del downtime
+🎯 Enfocarse en:
+   1. Implementar TPM para reducir fallas mecánicas
+   2. Mejorar gestión de inventarios (material)
+   
+💡 Impacto esperado:
+   Reducir 50% estas causas = Recuperar 100 min/día
+   = Producir ~100 unidades adicionales
+</code></pre>
+<hr>
+<h1 id="casos-de-estudio">CASOS DE ESTUDIO</h1>
+<h2 id="💊-caso-1-planta-farmacéutica---producción-de-tabletas">💊 CASO 1: Planta Farmacéutica - Producción de Tabletas</h2>
+<h3 id="situación-inicial">Situación Inicial:</h3>
+<p><strong>Contexto:</strong><br>
+Planta de manufactura farmacéutica certificada GxP produciendo tabletas de medicamento. Usa R Shiny para dashboards por compliance FDA/EMA.</p>
+<p><strong>Datos del Dashboard:</strong></p>
+<pre><code>Fecha: 15 de octubre de 2025
+Turno: Matutino (06:00 - 14:00)
+Línea: Tableteado - Línea 2
+
+Tiempo Planeado: 480 min
+Downtime: 65 min
+Lotes Planeados: 12 lotes
+Lotes Producidos: 10 lotes
+Tabletas por lote: 50,000
+Tabletas Defectuosas: 28,000 (0.56%)
+</code></pre>
+<h3 id="cálculo-de-kpis">Cálculo de KPIs:</h3>
+<h4 id="paso-1-disponibilidad">Paso 1: Disponibilidad</h4>
+<pre><code>Tiempo Operativo = 480 - 65 = 415 min
+Disponibilidad = 415 / 480 = 86.5%
+</code></pre>
+<h4 id="paso-2-rendimiento">Paso 2: Rendimiento</h4>
+<pre><code>Tabletas totales producidas: 10 lotes × 50,000 = 500,000
+Capacidad teórica: 12 lotes × 50,000 = 600,000
+Rendimiento = 500,000 / 600,000 = 83.3%
+</code></pre>
+<h4 id="paso-3-calidad">Paso 3: Calidad</h4>
+<pre><code>Tabletas Buenas = 500,000 - 28,000 = 472,000
+Calidad = 472,000 / 500,000 = 94.4%
+</code></pre>
+<h4 id="paso-4-oee">Paso 4: OEE</h4>
+<pre><code>OEE = 86.5% × 83.3% × 94.4% = 68.0%
+
+Clasificación: BUENO (no World Class) 🟡
+Meta Pharma: &gt; 80% para cumplir GxP standards
+</code></pre>
+<p><strong>¿Por qué Pharma usa R Shiny?</strong><br>
+✅ FDA/EMA acepta R para regulatory submissions<br>
+✅ Trazabilidad completa (GxP compliance)<br>
+✅ Validación de software open source<br>
+✅ Reportes automáticos para auditorías</p>
+<h3 id="análisis-de-pareto-del-downtime">Análisis de Pareto del Downtime:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Causa</th>
+<th>Tiempo</th>
+<th>%</th>
+<th>Análisis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Limpieza entre lotes (GMP)</td>
+<td>25 min</td>
+<td>38.5%</td>
+<td>🟡 Requerido</td>
+</tr>
+<tr>
+<td>Falta de material empaque</td>
+<td>18 min</td>
+<td>27.7%</td>
+<td>🔴 Crítico</td>
+</tr>
+<tr>
+<td>Calibración de equipos</td>
+<td>12 min</td>
+<td>18.5%</td>
+<td>🟡 GxP obligatorio</td>
+</tr>
+<tr>
+<td>Muestreo de calidad</td>
+<td>10 min</td>
+<td>15.4%</td>
+<td>🟢 Aceptable</td>
+</tr>
+</tbody>
+</table><h3 id="plan-de-acción-cumpliendo-gxp">Plan de Acción (Cumpliendo GxP):</h3>
+<p><strong>Prioridad 1: Falta de Material (18 min)</strong></p>
+<pre><code>Problema: Retraso en recepción de blisters
+Causa Raíz: Proveedor único con tiempos largos
+Solución: 
+  - Calificar proveedor secundario (GxP compliant)
+  - Buffer de seguridad: 2 semanas
+Impacto: Recuperar 18 min = +1 lote adicional
+</code></pre>
+<p><strong>Prioridad 2: Optimizar Limpieza (25 min)</strong></p>
+<pre><code>Problema: Limpieza entre lotes toma mucho tiempo
+Causa Raíz: Procedimiento no optimizado
+Solución:
+  - Revisar y validar SOP actualizado
+  - CIP (Clean-In-Place) automatizado
+  - Sin comprometer GMP
+Impacto: Reducir de 25 a 18 min = +7 min recuperados
+</code></pre>
+<p><strong>Prioridad 3: Calidad - Reducir Defectos (28,000 tabletas)</strong></p>
+<pre><code>Problema: 0.56% de defectos (alto para pharma)
+Causa Raíz: Variabilidad en compresión de tabletas
+Solución:
+  - Control estadístico de proceso (SPC)
+  - Monitoreo de fuerza de compresión en tiempo real
+  - Validación de proceso según ICH Q8
+Impacto: Reducir a 0.2% = solo 10,000 defectos
+         = +18,000 tabletas buenas
+</code></pre>
+<h3 id="proyección-con-mejoras">Proyección con Mejoras:</h3>
+<p><strong>Escenario Mejorado:</strong></p>
+<pre><code>Disponibilidad: 86.5% → 92.0% (recuperar 25 min)
+Rendimiento: 83.3% → 91.7% (+1 lote adicional)
+Calidad: 94.4% → 98.0% (menos defectos)
+
+OEE Proyectado = 92.0% × 91.7% × 98.0% = 82.7%
+
+Cerca de World Class Pharma (&gt;80%) ✅
+</code></pre>
+<p><strong>Beneficio Regulatorio:</strong></p>
+<pre><code>Cumplimiento mejorado:
+- Menos deviations reportados a FDA
+- Mejor track record en auditorías
+- CAPA (Corrective Actions) documentados en Shiny
+- Evidencia digital para submissions
+
+Dashboard R Shiny genera:
+- PDF reports automáticos para batch records
+- Validación 21 CFR Part 11 compliant
+- Audit trail completo
+</code></pre>
+<p><strong>Beneficio Financiero:</strong></p>
+<pre><code>Lotes adicionales: +2 por turno
+Turnos/mes: 60
+Total: +120 lotes/mes
+Valor por lote: $50,000
+Beneficio: $6,000,000/mes 💰
+
+ROI de implementación Shiny:
+- Inversión: $200,000 (desarrollo + validación)
+- Payback: &lt; 2 semanas ✅
+</code></pre>
+<hr>
+<h2 id="🤖-caso-3-automotriz--machine-learning---mantenimiento-predictivo">🤖 CASO 3: Automotriz + Machine Learning - Mantenimiento Predictivo</h2>
+<h3 id="contexto-el-futuro-de-los-dashboards-industriales">Contexto: El Futuro de los Dashboards Industriales</h3>
+<p><strong>Situación:</strong><br>
+Planta automotriz en Guanajuato con problemas recurrentes de paros no planeados en robots de soldadura. Implementaron dashboard R Shiny + Machine Learning para mantenimiento predictivo.</p>
+<p><strong>¿Por qué R Shiny aquí SÍ funciona?</strong><br>
+✅ Machine Learning (Random Forest, XGBoost)<br>
+✅ Análisis estadístico avanzado<br>
+✅ Integración con sensores IoT<br>
+✅ Visualización predictiva en tiempo real<br>
+✅ Tendencia en Industria 4.0</p>
+<h3 id="dashboard-en-tiempo-real">Dashboard en Tiempo Real:</h3>
+<pre><code>Fecha: 15 de octubre de 2025, 10:30 AM
+Línea: Soldadura - Robot Fanuc R-2000iC
+Producto: Chasis SUV
+
+🤖 ESTADO DEL EQUIPO:
+Robot ID: ROB-SW-003
+Horas operación: 18,450 hrs
+Ciclos completados: 2,847,392
+Última mantto: hace 180 días
+</code></pre>
+<h3 id="panel-1-kpis-tradicionales-histórico">Panel 1: KPIs Tradicionales (Histórico)</h3>
+<pre><code>📊 ÚLTIMAS 24 HORAS:
+OEE: 78.5% 🟡
+MTBF: 145 hrs (Meta: &gt;200) ❌
+MTTR: 2.8 hrs (Meta: &lt;2) ❌
+Disponibilidad: 89.2%
+Rendimiento: 94.3%
+Calidad: 93.2%
+
+Paros no planeados: 3 eventos
+Tiempo perdido: 8.4 hrs
+Costo estimado: $42,000
+</code></pre>
+<h3 id="panel-2-análisis-predictivo-con-ml-🚀">Panel 2: Análisis Predictivo con ML 🚀</h3>
+<p><strong>Datos de Sensores en Tiempo Real:</strong></p>
+<pre><code>Temperatura motor: 78°C (normal: 65-75°C) ⚠️
+Vibración eje X: 4.2 mm/s (normal: &lt;3.5) ⚠️
+Vibración eje Y: 2.8 mm/s ✅
+Corriente consumo: 18.5A (normal: 15-20A) ✅
+Ciclos desde lubricación: 12,450 (límite: 15,000) 🟡
+Calidad soldadura: 94.8% ✅
+</code></pre>
+<p><strong>Modelo de Machine Learning (Random Forest):</strong></p>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Modelo entrenado con 2 años de datos históricos</span>
+<span class="token comment"># Variables: temperatura, vibración, corriente, ciclos, edad</span>
+<span class="token comment"># Accuracy: 87%</span>
+<span class="token comment"># Recall (captura fallas): 91%</span>
+
+PREDICCIÓN<span class="token operator">:</span>
+┌────────────────────────────────────────┐
+│ 🔴 PROBABILIDAD DE FALLA<span class="token operator">:</span> <span class="token number">73.5</span>%       │
+│                                        │
+│ Componente en riesgo<span class="token operator">:</span> Motor principal │
+│ Tiempo estimado hasta falla<span class="token operator">:</span> <span class="token number">18</span><span class="token operator">-</span><span class="token number">36</span> hrs│
+│ Confianza del modelo<span class="token operator">:</span> <span class="token number">87</span>%             │
+└────────────────────────────────────────┘
+</code></pre>
+<h3 id="panel-3-recomendaciones-inteligentes">Panel 3: Recomendaciones Inteligentes</h3>
+<p><strong>El sistema recomienda:</strong></p>
+<pre><code>⚡ ACCIÓN INMEDIATA REQUERIDA:
+
+1. 🔧 MANTENIMIENTO PREVENTIVO PROGRAMADO
+   Cuándo: Próxima ventana de producción (mañana 6 AM)
+   Duración estimada: 3 horas
+   Componentes: Reemplazar motor + lubricación completa
+   
+2. 📊 ANÁLISIS DE CAUSA RAÍZ
+   Factor principal: Temperatura elevada (73°C → 78°C)
+   Tendencia: +0.5°C por semana (últimas 4 semanas)
+   Causa probable: Sistema de enfriamiento degradado
+   
+3. 💰 IMPACTO FINANCIERO
+   Costo mantto preventivo: $8,000
+   vs
+   Costo paro no planeado: $42,000 (promedio)
+   
+   AHORRO: $34,000 por intervención
+   
+4. 📅 VENTANA ÓPTIMA
+   Análisis de producción:
+   - Hoy 6 PM: Inicio turno bajo (70% capacidad) ✅
+   - Mañana 6 AM: Entre turnos ✅ RECOMENDADO
+   - Mañana 2 PM: Producción pico ❌
+</code></pre>
+<h3 id="visualización-del-dashboard">Visualización del Dashboard:</h3>
+<p><strong>Gráfico 1: Degradación del Equipo (Time Series)</strong></p>
+<pre><code>Temperatura Motor (últimos 30 días)
+85°C |                              ╱
+80°C |                          ╱╱╱
+75°C |                    ╱╱╱╱
+70°C |            ╱╱╱╱╱╱
+65°C |╱╱╱╱╱╱╱╱╱
+     └────────────────────────────────
+      Día 1  Día 10  Día 20  Día 30
+      
+     Límite superior: 75°C
+     Tendencia: +0.5°C por semana ⚠️
+     Predicción Día 35: 80°C 🔴
+</code></pre>
+<p><strong>Gráfico 2: Probabilidad de Falla (Gauge)</strong></p>
+<pre><code>      RIESGO DE FALLA
+           
+     🟢 Bajo (0-30%)
+     🟡 Medio (30-60%)
+     🔴 Alto (60-100%) ← 73.5% ⚠️
+     
+   ⚡ ACCIÓN REQUERIDA
+</code></pre>
+<p><strong>Gráfico 3: Feature Importance (ML)</strong></p>
+<pre><code>¿Qué factores influyen más en la predicción?
+
+Temperatura:        ████████████ 45%
+Vibración X:        ████████ 28%
+Ciclos desde mantto:██████ 18%
+Corriente:          ███ 9%
+</code></pre>
+<h3 id="implementación-técnica">Implementación Técnica:</h3>
+<pre class=" language-r"><code class="prism  language-r"><span class="token comment"># Dashboard Shiny + ML</span>
+library<span class="token punctuation">(</span>shiny<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>randomForest<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>plotly<span class="token punctuation">)</span>
+
+<span class="token comment"># Cargar modelo pre-entrenado</span>
+modelo_falla <span class="token operator">&lt;-</span> readRDS<span class="token punctuation">(</span><span class="token string">"modelo_predictivo_robot.rds"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Datos en tiempo real (simulados para demo)</span>
+datos_sensores <span class="token operator">&lt;-</span> reactive<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment"># En producción: leer de API de sensores</span>
+  data.frame<span class="token punctuation">(</span>
+    temperatura <span class="token operator">=</span> input<span class="token operator">$</span>temp_actual<span class="token punctuation">,</span>
+    vibracion_x <span class="token operator">=</span> input<span class="token operator">$</span>vib_x<span class="token punctuation">,</span>
+    vibracion_y <span class="token operator">=</span> input<span class="token operator">$</span>vib_y<span class="token punctuation">,</span>
+    corriente <span class="token operator">=</span> input<span class="token operator">$</span>corriente<span class="token punctuation">,</span>
+    ciclos_mantto <span class="token operator">=</span> input<span class="token operator">$</span>ciclos
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Predicción</span>
+prediccion_falla <span class="token operator">&lt;-</span> reactive<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  predict<span class="token punctuation">(</span>modelo_falla<span class="token punctuation">,</span> datos_sensores<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token string">"prob"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Visualización</span>
+output<span class="token operator">$</span>gauge_riesgo <span class="token operator">&lt;-</span> renderPlotly<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  prob <span class="token operator">&lt;-</span> prediccion_falla<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">100</span>
+  
+  plot_ly<span class="token punctuation">(</span>
+    type <span class="token operator">=</span> <span class="token string">"indicator"</span><span class="token punctuation">,</span>
+    mode <span class="token operator">=</span> <span class="token string">"gauge+number"</span><span class="token punctuation">,</span>
+    value <span class="token operator">=</span> prob<span class="token punctuation">,</span>
+    gauge <span class="token operator">=</span> list<span class="token punctuation">(</span>
+      axis <span class="token operator">=</span> list<span class="token punctuation">(</span>range <span class="token operator">=</span> list<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      bar <span class="token operator">=</span> list<span class="token punctuation">(</span>color <span class="token operator">=</span> ifelse<span class="token punctuation">(</span>prob <span class="token operator">&gt;</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token string">"red"</span><span class="token punctuation">,</span> 
+                         ifelse<span class="token punctuation">(</span>prob <span class="token operator">&gt;</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token string">"orange"</span><span class="token punctuation">,</span> <span class="token string">"green"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      steps <span class="token operator">=</span> list<span class="token punctuation">(</span>
+        list<span class="token punctuation">(</span>range <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color <span class="token operator">=</span> <span class="token string">"lightgreen"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        list<span class="token punctuation">(</span>range <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color <span class="token operator">=</span> <span class="token string">"yellow"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        list<span class="token punctuation">(</span>range <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color <span class="token operator">=</span> <span class="token string">"lightcoral"</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Recomendación automática</span>
+output<span class="token operator">$</span>recomendacion <span class="token operator">&lt;-</span> renderUI<span class="token punctuation">(</span><span class="token punctuation">{</span>
+  prob <span class="token operator">&lt;-</span> prediccion_falla<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span>
+  
+  <span class="token keyword">if</span><span class="token punctuation">(</span>prob <span class="token operator">&gt;</span> <span class="token number">0.7</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    div<span class="token punctuation">(</span>class <span class="token operator">=</span> <span class="token string">"alert alert-danger"</span><span class="token punctuation">,</span>
+        h4<span class="token punctuation">(</span><span class="token string">"⚡ ACCIÓN INMEDIATA REQUERIDA"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Probabilidad de falla: "</span><span class="token punctuation">,</span> round<span class="token punctuation">(</span>prob<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Programar mantenimiento en próximas 24 horas"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        actionButton<span class="token punctuation">(</span><span class="token string">"programar"</span><span class="token punctuation">,</span> <span class="token string">"Programar Mantenimiento"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>prob <span class="token operator">&gt;</span> <span class="token number">0.4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    div<span class="token punctuation">(</span>class <span class="token operator">=</span> <span class="token string">"alert alert-warning"</span><span class="token punctuation">,</span>
+        h4<span class="token punctuation">(</span><span class="token string">"⚠️ MONITOREO CERCANO"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Probabilidad de falla: "</span><span class="token punctuation">,</span> round<span class="token punctuation">(</span>prob<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Verificar sensores en próximos 3 días"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    div<span class="token punctuation">(</span>class <span class="token operator">=</span> <span class="token string">"alert alert-success"</span><span class="token punctuation">,</span>
+        h4<span class="token punctuation">(</span><span class="token string">"✅ OPERACIÓN NORMAL"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Probabilidad de falla: "</span><span class="token punctuation">,</span> round<span class="token punctuation">(</span>prob<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        p<span class="token punctuation">(</span><span class="token string">"Continuar operación estándar"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="resultados-reales-del-proyecto">Resultados Reales del Proyecto:</h3>
+<p><strong>Antes de ML Dashboard (2024):</strong></p>
+<pre><code>Paros no planeados: 24 por mes
+Tiempo downtime: 67 hrs/mes
+OEE promedio: 72%
+Costo downtime: $335,000/mes
+</code></pre>
+<p><strong>Después de ML Dashboard (6 meses):</strong></p>
+<pre><code>Paros no planeados: 9 por mes (-62%) ✅
+Tiempo downtime: 25 hrs/mes (-63%) ✅
+OEE promedio: 84% (+12 puntos) ✅
+Costo downtime: $125,000/mes ✅
+
+AHORRO: $210,000/mes
+AHORRO ANUAL: $2,520,000 💰
+</code></pre>
+<p><strong>Inversión del Proyecto:</strong></p>
+<pre><code>Desarrollo dashboard R Shiny + ML: $120,000
+Sensores IoT adicionales: $80,000
+Capacitación equipo: $30,000
+TOTAL: $230,000
+
+ROI: 1,095% en primer año
+Payback: 1.1 meses ✅✅✅
+</code></pre>
+<h3 id="¿por-qué-este-enfoque-sí-funciona-en-automotriz">¿Por Qué Este Enfoque SÍ Funciona en Automotriz?</h3>
+<p>✅ <strong>Machine Learning = Valor agregado</strong></p>
+<ul>
+<li>No es solo visualización</li>
+<li>Predicción inteligente</li>
+<li>Decisiones automáticas</li>
+</ul>
+<p>✅ <strong>Industria 4.0</strong></p>
+<ul>
+<li>Sensores IoT</li>
+<li>Big Data analytics</li>
+<li>Smart Manufacturing</li>
+</ul>
+<p>✅ <strong>ROI Comprobable</strong></p>
+<ul>
+<li>Reducción 60%+ en paros</li>
+<li>Payback &lt; 2 meses</li>
+<li>Casos de éxito globales</li>
+</ul>
+<p>✅ <strong>Tendencia Global</strong></p>
+<ul>
+<li>Gartner: 75% de plantas con ML para 2027</li>
+<li>McKinsey: $2 trillion potential en Industry 4.0</li>
+<li>Automotrices líderes ya lo implementan</li>
+</ul>
+<h3 id="empresas-automotrices-con-sistemas-similares">Empresas Automotrices con Sistemas Similares:</h3>
+<p>🚗 <strong>Tesla</strong> - Mantenimiento predictivo en líneas de producción<br>
+🚗 <strong>BMW</strong> - ML para calidad de soldadura<br>
+🚗 <strong>Toyota</strong> - Predictive maintenance con IoT<br>
+🚗 <strong>VW</strong> - Industry 4.0 pilots en plantas alemanas</p>
+<p><strong>Herramientas:</strong> Mezcla de Python, R, SAP, y soluciones custom</p>
+<h3 id="lecciones-del-caso">Lecciones del Caso:</h3>
+<ol>
+<li><strong>R Shiny en automotriz:</strong> Limitado para dashboards tradicionales</li>
+<li><strong>R Shiny + ML en automotriz:</strong> Aquí SÍ hay aplicación real</li>
+<li><strong>El futuro:</strong> Dashboards predictivos e inteligentes</li>
+<li><strong>Habilidad clave:</strong> Combinar ingeniería + data science</li>
+</ol>
+<hr>
+<h2 id="🎓-mensaje-para-los-estudiantes">🎓 <strong>MENSAJE PARA LOS ESTUDIANTES:</strong></h2>
+<blockquote>
+<p>"Lo que aprendieron hoy sobre KPIs (OEE, MTBF, MTTR)<br>
+es UNIVERSAL en toda manufactura ✅</p>
+<p>El dashboard tradicional es solo el INICIO.<br>
+El FUTURO son los dashboards INTELIGENTES<br>
+que predicen problemas antes de que ocurran 🤖</p>
+<p>R + Shiny + Machine Learning<br>
+= La combinación perfecta para Industria 4.0" 🚀</p>
+</blockquote>
+<h3 id="datos-del-dashboard">Datos del Dashboard:</h3>
+<pre><code>Línea: Inyectora #3
+Producto: Cajas plásticas
+Período: Semana 41 (Oct 7-13, 2025)
+
+Promedio Semanal:
+- OEE: 72.3%
+- MTBF: 145 hrs
+- MTTR: 2.5 hrs
+- FPY: 92.1%
+</code></pre>
+<h3 id="diagnóstico">Diagnóstico:</h3>
+<h4 id="análisis-de-oee-72.3---regular-🟡">Análisis de OEE (72.3% - Regular 🟡)</h4>
+<pre><code>Desglose de componentes:
+- Disponibilidad: 85.2%
+- Rendimiento: 92.1%
+- Calidad: 92.1%
+
+Pérdida total: 27.7%
+- Por Disponibilidad: 14.8%
+- Por Rendimiento: 7.9%
+- Por Calidad: 7.9%
+</code></pre>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li>Ningún componente es crítico individualmente</li>
+<li>Todos necesitan mejora incremental</li>
+<li>Enfoque: Kaizen (mejora continua)</li>
+</ul>
+<h4 id="análisis-de-mtbf-145-hrs---bajo-❌">Análisis de MTBF (145 hrs - Bajo ❌)</h4>
+<p><strong>Meta:</strong> &gt; 200 hrs</p>
+<pre><code>Situación actual:
+- Falla cada 6 días aproximadamente
+- Frecuencia inaceptable
+- Impacta producción y costos
+
+Causas principales (del historial):
+1. Desgaste de moldes: 35%
+2. Fallas hidráulicas: 28%
+3. Sensores dañados: 22%
+4. Otros: 15%
+</code></pre>
+<h4 id="análisis-de-mttr-2.5-hrs---alto-❌">Análisis de MTTR (2.5 hrs - Alto ❌)</h4>
+<p><strong>Meta:</strong> &lt; 2 hrs</p>
+<pre><code>Problema: Reparaciones lentas
+Impacto: Cada falla cuesta 2.5 hrs = 150 piezas
+
+Análisis de tiempos:
+- Detección: 15 min
+- Diagnóstico: 45 min ⚠️ (muy lento)
+- Reparación: 60 min
+- Verificación: 30 min
+
+Cuello de botella: DIAGNÓSTICO
+</code></pre>
+<h3 id="plan-de-mejora-integral">Plan de Mejora Integral:</h3>
+<h4 id="mejora-1-aumentar-mtbf">Mejora 1: Aumentar MTBF</h4>
+<pre><code>Acción: Programa de mantenimiento predictivo
+- Monitorear temperatura y presión en tiempo real
+- Reemplazo preventivo de moldes cada 100k ciclos
+- Revisión hidráulica quincenal
+
+Resultado esperado:
+MTBF: 145 → 220 hrs (+52%)
+Reducción de fallas: 10 → 6.5 por mes
+</code></pre>
+<h4 id="mejora-2-reducir-mttr">Mejora 2: Reducir MTTR</h4>
+<pre><code>Acción: Sistema de diagnóstico rápido
+- Implementar códigos de error en pantalla
+- Kit de repuestos críticos en línea
+- Capacitación en troubleshooting
+
+Resultado esperado:
+MTTR: 2.5 → 1.5 hrs (-40%)
+Diagnóstico: 45 → 15 min
+</code></pre>
+<h4 id="mejora-3-aumentar-fpy">Mejora 3: Aumentar FPY</h4>
+<pre><code>Acción: Control estadístico de proceso (SPC)
+- Gráficos de control en tiempo real
+- Alarmas de tendencia
+- Ajuste automático de parámetros
+
+Resultado esperado:
+FPY: 92.1% → 96.5% (+4.4 puntos)
+Defectos: 79 → 35 por turno
+</code></pre>
+<h3 id="proyección-post-mejora">Proyección Post-Mejora:</h3>
+<pre><code>OEE Actual: 72.3%
+
+Con mejoras:
+- Disponibilidad: 85.2% → 92.0%
+- Rendimiento: 92.1% → 95.0%
+- Calidad: 92.1% → 96.5%
+
+OEE Proyectado = 92.0% × 95.0% × 96.5% = 84.3%
+
+Mejora: +12 puntos porcentuales
+Status: De Regular a Bueno (cerca de World Class)
+</code></pre>
+<p><strong>ROI del Proyecto:</strong></p>
+<pre><code>Inversión:
+- Sistema predictivo: $150,000
+- Capacitación: $50,000
+- Repuestos: $30,000
+Total: $230,000
+
+Beneficio anual:
+- Reducción downtime: 520 hrs = $1,040,000
+- Reducción defectos: 26,400 piezas = $264,000
+Total: $1,304,000/año
+
+ROI: (1,304,000 - 230,000) / 230,000 = 467%
+Payback: 2.1 meses ✅
+</code></pre>
+<hr>
+<h2 id="🏭-caso-3-embotelladora-de-bebidas">🏭 CASO 3: Embotelladora de Bebidas</h2>
+<h3 id="dashboard-en-tiempo-real-1">Dashboard en Tiempo Real:</h3>
+<pre><code>Fecha: 15 de octubre de 2025, 10:30 AM
+Línea: Embotellado Línea 2
+Producto: Refresco 600ml
+
+Datos actuales (últimas 2 horas):
+- Botellas producidas: 14,250
+- Botellas rechazadas: 285
+- Paros: 3 eventos
+- Tiempo de paro total: 18 min
+</code></pre>
+<h3 id="cálculo-de-kpis-en-tiempo-real">Cálculo de KPIs en Tiempo Real:</h3>
+<h4 id="fpy-actual">FPY Actual:</h4>
+<pre><code>FPY = (14,250 - 285) / 14,250 = 98.0%
+
+Status: BUENO ✅
+Meta: 99%
+Gap: 1 punto porcentual
+</code></pre>
+<h4 id="oee-parcial-2-horas">OEE Parcial (2 horas):</h4>
+<pre><code>Tiempo disponible: 120 min
+Downtime: 18 min
+Tiempo operativo: 102 min
+
+Velocidad teórica: 120 botellas/min
+Producción esperada: 120 × 102 = 12,240
+
+Disponibilidad = 102 / 120 = 85.0%
+Rendimiento = 14,250 / 12,240 = 116.4% → 100%
+Calidad = 98.0%
+
+OEE = 85.0% × 100% × 98.0% = 83.3%
+</code></pre>
+<h3 id="alertas-generadas">Alertas Generadas:</h3>
+<pre><code>🟡 ALERTA 1: FPY por debajo de meta (98.0% &lt; 99%)
+   Causa: Nivel de llenado fuera de especificación
+   Acción: Ajustar válvula de llenado
+
+🟠 ALERTA 2: 3 paros en 2 horas (frecuencia alta)
+   Última causa: Atasco en etiquetadora
+   Acción: Limpiar rodillos de etiquetadora
+
+✅ POSITIVO: Rendimiento al 100% (velocidad óptima)
+</code></pre>
+<h3 id="análisis-de-defectos">Análisis de Defectos:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Tipo de Defecto</th>
+<th>Cantidad</th>
+<th>%</th>
+<th>Causa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nivel bajo</td>
+<td>142</td>
+<td>49.8%</td>
+<td>Válvula</td>
+</tr>
+<tr>
+<td>Etiqueta mal</td>
+<td>85</td>
+<td>29.8%</td>
+<td>Rodillos</td>
+</tr>
+<tr>
+<td>Tapa floja</td>
+<td>58</td>
+<td>20.4%</td>
+<td>Torque</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>285</strong></td>
+<td><strong>100%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table><p><strong>Concentración:</strong> 79.6% de defectos en 2 causas</p>
+<h3 id="acciones-correctivas-inmediatas">Acciones Correctivas Inmediatas:</h3>
+<pre><code>1. AJUSTE DE VÁLVULA (10 min)
+   - Detener línea
+   - Calibrar presión de llenado
+   - Verificar con 50 muestras
+   Impacto esperado: -70% defectos de nivel
+
+2. LIMPIEZA DE ETIQUETADORA (5 min)
+   - Limpiar rodillos con solvente
+   - Verificar tensión de banda
+   - Ajustar posición de aplicador
+   Impacto esperado: -80% defectos de etiqueta
+
+Downtime adicional: 15 min
+Beneficio: Pasar de 98.0% a 99.2% FPY
+</code></pre>
+<h3 id="proyección-post-ajustes">Proyección Post-Ajustes:</h3>
+<p><strong>Escenario Mejorado (próximas 2 horas):</strong></p>
+<pre><code>Defectos proyectados:
+- Nivel bajo: 142 → 43 (-70%)
+- Etiqueta mal: 85 → 17 (-80%)
+- Tapa floja: 58 (igual, se atenderá después)
+Total: 118 defectos (-59%)
+
+FPY proyectado: (14,250 - 118) / 14,250 = 99.2%
+✅ META ALCANZADA
+
+OEE proyectado:
+Disponibilidad: 85.0% → 82.5% (por parada de ajustes)
+Calidad: 98.0% → 99.2%
+
+OEE = 82.5% × 100% × 99.2% = 81.8%
+
+Nota: OEE baja temporalmente pero mejora sostenible
+</code></pre>
+<hr>
+<h1 id="interpretación-de-resultados-1">INTERPRETACIÓN DE RESULTADOS</h1>
+<h2 id="📊-guía-de-interpretación-de-dashboards">📊 Guía de Interpretación de Dashboards</h2>
+<h3 id="leer-los-kpis-principales">1. <strong>Leer los KPIs Principales</strong></h3>
+<h4 id="oee">OEE:</h4>
+<pre><code>&lt; 40%  🔴 CRÍTICO  → Problemas graves, pérdidas significativas
+40-64% 🟠 REGULAR  → Necesita mejoras importantes
+65-84% 🟡 BUENO    → Competitivo, oportunidades de mejora
+≥ 85%  🟢 EXCELLENT→ World Class, mantener y optimizar
+</code></pre>
+<h4 id="fpy">FPY:</h4>
+<pre><code>&lt; 90%  🔴 CRÍTICO  → Proceso fuera de control
+90-94% 🟡 REGULAR  → Mejorar control de calidad
+95-98% 🟢 BUENO    → Proceso bajo control
+≥ 99%  🌟 EXCELENTE→ Six Sigma, clase mundial
+</code></pre>
+<h4 id="mtbf">MTBF:</h4>
+<pre><code>&lt; 100 hrs 🔴 CRÍTICO → Equipo no confiable
+100-200   🟡 REGULAR → Mantenimiento reactivo
+&gt; 200 hrs 🟢 BUENO   → Mantenimiento proactivo
+&gt; 500 hrs 🌟 EXCELLENT→ Equipo muy confiable
+</code></pre>
+<h3 id="analizar-tendencias">2. <strong>Analizar Tendencias</strong></h3>
+<h4 id="tendencia-ascendente-buena-↗️">Tendencia Ascendente (Buena) ↗️:</h4>
+<pre><code>[Gráfico muestra línea subiendo]
+
+Interpretación:
+✅ Mejoras están funcionando
+✅ Proceso bajo control
+✅ Acciones correctivas efectivas
+
+Acción: Mantener y documentar mejores prácticas
+</code></pre>
+<h4 id="tendencia-descendente-mala-↘️">Tendencia Descendente (Mala) ↘️:</h4>
+<pre><code>[Gráfico muestra línea bajando]
+
+Interpretación:
+⚠️ Deterioro del proceso
+⚠️ Posible desgaste de equipo
+⚠️ Necesita intervención
+
+Acción: Investigar causa raíz inmediatamente
+</code></pre>
+<h4 id="tendencia-estable-neutral-→">Tendencia Estable (Neutral) →:</h4>
+<pre><code>[Gráfico muestra línea horizontal]
+
+Interpretación:
+Si está arriba: ✅ Proceso maduro y estable
+Si está abajo: ❌ Estancado en bajo desempeño
+
+Acción: Si bajo, implementar breakthrough improvement
+</code></pre>
+<h3 id="priorizar-acciones-con-matriz">3. <strong>Priorizar Acciones con Matriz</strong></h3>
+<pre><code>              Alto Impacto
+                   ↑
+      Crítico  |  Urgente
+    -----------|------------
+      Mejorar  |  Mantener
+                   ↓
+              Bajo Impacto
+    
+    ← Fácil       Difícil →
+</code></pre>
+<p><strong>Ejemplo de Priorización:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Impacto OEE</th>
+<th>Dificultad</th>
+<th>Cuadrante</th>
+<th>Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fallas eléctricas</td>
+<td>+5%</td>
+<td>Media</td>
+<td>Urgente</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cambios de producto</td>
+<td>+3%</td>
+<td>Baja</td>
+<td>Crítico</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Calidad deficiente</td>
+<td>+4%</td>
+<td>Alta</td>
+<td>Urgente</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Velocidad baja</td>
+<td>+2%</td>
+<td>Baja</td>
+<td>Mejorar</td>
+<td>4</td>
+</tr>
+</tbody>
+</table><hr>
+<h1 id="escenarios-de-manufactura">ESCENARIOS DE MANUFACTURA</h1>
+<h2 id="🎯-escenario-1-crisis-de-producción">🎯 Escenario 1: Crisis de Producción</h2>
+<h3 id="situación">Situación:</h3>
+<pre><code>Hora: 11:00 AM
+Dashboard muestra:
+🔴 OEE: 45% (crítico)
+🔴 Producción: 60% de meta
+🔴 3 líneas detenidas
+</code></pre>
+<h3 id="protocolo-de-respuesta">Protocolo de Respuesta:</h3>
+<p><strong>Paso 1: Triage (5 min)</strong></p>
+<pre><code>1. Identificar línea crítica
+2. Verificar seguridad
+3. Contactar supervisores
+</code></pre>
+<p><strong>Paso 2: Diagnóstico Rápido (10 min)</strong></p>
+<pre><code>Dashboard indica:
+- Línea A: Falla mecánica (motor)
+- Línea B: Falta de material
+- Línea C: Problema de calidad
+
+Prioridad: Línea B (solución rápida)
+</code></pre>
+<p><strong>Paso 3: Acciones Inmediatas</strong></p>
+<pre><code>11:10 - Línea B: Liberar material de almacén
+11:20 - Línea B reinicia (OEE sube a 60%)
+11:30 - Línea C: Ajuste de parámetros
+11:45 - Línea C reinicia (OEE sube a 75%)
+12:00 - Línea A: Técnico en camino
+</code></pre>
+<h3 id="resultado">Resultado:</h3>
+<pre><code>12:30 PM - Situación controlada
+OEE recuperado a 75%
+Pérdida total: 90 min de producción
+Plan: Recuperar en turno vespertino
+</code></pre>
+<hr>
+<h2 id="🎯-escenario-2-optimización-continua">🎯 Escenario 2: Optimización Continua</h2>
+<h3 id="situación-1">Situación:</h3>
+<pre><code>OEE estable en 78% por 3 meses
+Meta: Alcanzar 85% (World Class)
+</code></pre>
+<h3 id="estrategia-kaizen">Estrategia Kaizen:</h3>
+<p><strong>Semana 1-2: Mapeo de pérdidas</strong></p>
+<pre><code>Usar dashboard para identificar:
+- Top 5 causas de downtime
+- Patrones de defectos
+- Cuellos de botella
+</code></pre>
+<p><strong>Semana 3-4: Experimentos pequeños</strong></p>
+<pre><code>Test A: Reducir tiempo de cambio (-5 min)
+Resultado: Disponibilidad +2%
+
+Test B: Ajustar velocidad de línea
+Resultado: Calidad +1%
+</code></pre>
+<p><strong>Semana 5-6: Implementación</strong></p>
+<pre><code>Estandarizar mejoras exitosas
+Capacitar a operadores
+Actualizar procedimientos
+</code></pre>
+<p><strong>Resultado Final:</strong></p>
+<pre><code>OEE: 78% → 83% (+5 puntos en 6 semanas)
+Próxima meta: 85% en 3 meses
+</code></pre>
+<hr>
+<h1 id="preguntas-frecuentes">PREGUNTAS FRECUENTES</h1>
+<h2 id="❓-faq-técnicas">❓ FAQ Técnicas</h2>
+<h3 id="p1-¿por-qué-mi-oee-bajó-después-de-mejorar-la-calidad">P1: ¿Por qué mi OEE bajó después de mejorar la calidad?</h3>
+<p><strong>R:</strong> Esto es normal. Ejemplo:</p>
+<pre><code>Antes:
+Disponibilidad: 95%
+Rendimiento: 90%
+Calidad: 90%
+OEE = 77.0%
+
+Después (más inspección):
+Disponibilidad: 92% (más tiempo inspeccionando)
+Rendimiento: 88% (más lento para calidad)
+Calidad: 98% (mejor)
+OEE = 79.2%
+
+Aunque OEE subió solo 2%, la calidad mejoró 8%
+Es un trade-off aceptable a corto plazo
+</code></pre>
+<h3 id="p2-¿qué-hacer-si-tengo-mtbf-bajo-pero-mttr-bajo-también">P2: ¿Qué hacer si tengo MTBF bajo pero MTTR bajo también?</h3>
+<p><strong>R:</strong> Situación: Muchas fallas pero reparaciones rápidas</p>
+<pre><code>Análisis:
+- Problema: Fallas frecuentes (MTBF bajo)
+- Positivo: Respuesta rápida (MTTR bajo)
+
+Acción:
+1. Mantener equipo de respuesta rápida ✅
+2. Enfocarse en PREVENIR fallas
+3. Implementar mantenimiento predictivo
+4. Analizar causa raíz de fallas recurrentes
+
+Meta: Aumentar MTBF manteniendo MTTR bajo
+</code></pre>
+<h3 id="p3-¿cómo-interpretar-un-pareto-plano">P3: ¿Cómo interpretar un Pareto plano?</h3>
+<p><strong>R:</strong> Si todas las causas son similares:</p>
+<pre><code>Causa A: 22%
+Causa B: 20%
+Causa C: 18%
+Causa D: 17%
+Causa E: 23%
+
+Interpretación:
+- No hay "pocos vitales"
+- Problema sistémico, no puntual
+- Requiere enfoque holístico
+
+Acción:
+- No atacar causas individuales
+- Revisar proceso completo
+- Considerar rediseño
+</code></pre>
+<hr>
+<h2 id="🎓-aplicación-en-el-taller">🎓 Aplicación en el Taller</h2>
+<h3 id="para-instructores">Para Instructores:</h3>
+<p><strong>Usar estos casos en:</strong></p>
+<ol>
+<li>Módulo 3 - KPIs (demostrar cálculos)</li>
+<li>Módulo 4 - Dashboard (análisis en vivo)</li>
+<li>Ejercicios prácticos (que resuelvan)</li>
+</ol>
+<p><strong>Formato sugerido:</strong></p>
+<pre><code>1. Mostrar datos crudos
+2. Calcular juntos KPIs
+3. Interpretar resultados
+4. Proponer acciones
+5. Proyectar mejoras
+</code></pre>
+<h3 id="para-participantes">Para Participantes:</h3>
+<p><strong>Práctica recomendada:</strong></p>
+<pre><code>1. Leer caso completo
+2. Intentar calcular antes de ver solución
+3. Comparar con solución dada
+4. Aplicar a datos propios (si tienen)
+</code></pre>
+<hr>
+<h2 id="📝-notas-finales">📝 Notas Finales</h2>
+<p>Este solucionario incluye:</p>
+<ul>
+<li>✅ Soluciones paso a paso de ejercicios</li>
+<li>✅ 3 casos de estudio completos</li>
+<li>✅ Análisis e interpretación de resultados</li>
+<li>✅ Escenarios prácticos de manufactura</li>
+<li>✅ Guías de priorización y acción</li>
+</ul>
+<p><strong>Úsalo como referencia durante y después del taller</strong> 🎯</p>
+<hr>
+<p><em>Solucionario creado para la Semana Tecnológica 2025</em><br>
+<em>Instituto Tecnológico Superior de Purísima del Rincón</em><br>
+<em>Octubre 2025</em></p>
+</div>
+</body>
+
+</html>
